@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6DF4925D15696CD2008DDE82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925C15696CD2008DDE82 /* UIKit.framework */; };
+		6DF4925F15696CD2008DDE82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925E15696CD2008DDE82 /* Foundation.framework */; };
+		6DF4926115696CD2008DDE82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4926015696CD2008DDE82 /* CoreGraphics.framework */; };
+		6DF4926715696CD2008DDE82 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DF4926515696CD2008DDE82 /* InfoPlist.strings */; };
+		6DF4926915696CD2008DDE82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4926815696CD2008DDE82 /* main.m */; };
+		6DF4926D15696CD2008DDE82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4926C15696CD2008DDE82 /* AppDelegate.m */; };
+		6DF4927015696CD2008DDE82 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF4926E15696CD2008DDE82 /* MainStoryboard_iPhone.storyboard */; };
+		6DF4927315696CD2008DDE82 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DF4927115696CD2008DDE82 /* MainStoryboard_iPad.storyboard */; };
+		6DF4927615696CD2008DDE82 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4927515696CD2008DDE82 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6DF4925815696CD2008DDE82 /* Virtual Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Vacation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DF4925C15696CD2008DDE82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6DF4925E15696CD2008DDE82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6DF4926015696CD2008DDE82 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6DF4926415696CD2008DDE82 /* Virtual Vacation-Info.plist */ = {isa = PBXFileReference; path = "Virtual Vacation-Info.plist"; sourceTree = "<group>"; };
+		6DF4926615696CD2008DDE82 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6DF4926815696CD2008DDE82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DF4926A15696CD2008DDE82 /* Virtual Vacation-Prefix.pch */ = {isa = PBXFileReference; path = "Virtual Vacation-Prefix.pch"; sourceTree = "<group>"; };
+		6DF4926B15696CD2008DDE82 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		6DF4926C15696CD2008DDE82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6DF4926F15696CD2008DDE82 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		6DF4927215696CD2008DDE82 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		6DF4927415696CD2008DDE82 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		6DF4927515696CD2008DDE82 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DF4925515696CD2008DDE82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DF4925D15696CD2008DDE82 /* UIKit.framework in Frameworks */,
+				6DF4925F15696CD2008DDE82 /* Foundation.framework in Frameworks */,
+				6DF4926115696CD2008DDE82 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6DF4924D15696CD2008DDE82 = {
+			isa = PBXGroup;
+			children = (
+				6DF4926215696CD2008DDE82 /* Virtual Vacation */,
+				6DF4925B15696CD2008DDE82 /* Frameworks */,
+				6DF4925915696CD2008DDE82 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6DF4925915696CD2008DDE82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DF4925815696CD2008DDE82 /* Virtual Vacation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DF4925B15696CD2008DDE82 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DF4925C15696CD2008DDE82 /* UIKit.framework */,
+				6DF4925E15696CD2008DDE82 /* Foundation.framework */,
+				6DF4926015696CD2008DDE82 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6DF4926215696CD2008DDE82 /* Virtual Vacation */ = {
+			isa = PBXGroup;
+			children = (
+				6DF4926B15696CD2008DDE82 /* AppDelegate.h */,
+				6DF4926C15696CD2008DDE82 /* AppDelegate.m */,
+				6DF4926E15696CD2008DDE82 /* MainStoryboard_iPhone.storyboard */,
+				6DF4927115696CD2008DDE82 /* MainStoryboard_iPad.storyboard */,
+				6DF4927415696CD2008DDE82 /* ViewController.h */,
+				6DF4927515696CD2008DDE82 /* ViewController.m */,
+				6DF4926315696CD2008DDE82 /* Supporting Files */,
+			);
+			path = "Virtual Vacation";
+			sourceTree = "<group>";
+		};
+		6DF4926315696CD2008DDE82 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DF4926415696CD2008DDE82 /* Virtual Vacation-Info.plist */,
+				6DF4926515696CD2008DDE82 /* InfoPlist.strings */,
+				6DF4926815696CD2008DDE82 /* main.m */,
+				6DF4926A15696CD2008DDE82 /* Virtual Vacation-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DF4925715696CD2008DDE82 /* Virtual Vacation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DF4927915696CD2008DDE82 /* Build configuration list for PBXNativeTarget "Virtual Vacation" */;
+			buildPhases = (
+				6DF4925415696CD2008DDE82 /* Sources */,
+				6DF4925515696CD2008DDE82 /* Frameworks */,
+				6DF4925615696CD2008DDE82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Virtual Vacation";
+			productName = "Virtual Vacation";
+			productReference = 6DF4925815696CD2008DDE82 /* Virtual Vacation.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DF4924F15696CD2008DDE82 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Michael Mangold";
+			};
+			buildConfigurationList = 6DF4925215696CD2008DDE82 /* Build configuration list for PBXProject "Virtual Vacation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6DF4924D15696CD2008DDE82;
+			productRefGroup = 6DF4925915696CD2008DDE82 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DF4925715696CD2008DDE82 /* Virtual Vacation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DF4925615696CD2008DDE82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DF4926715696CD2008DDE82 /* InfoPlist.strings in Resources */,
+				6DF4927015696CD2008DDE82 /* MainStoryboard_iPhone.storyboard in Resources */,
+				6DF4927315696CD2008DDE82 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DF4925415696CD2008DDE82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DF4926915696CD2008DDE82 /* main.m in Sources */,
+				6DF4926D15696CD2008DDE82 /* AppDelegate.m in Sources */,
+				6DF4927615696CD2008DDE82 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6DF4926515696CD2008DDE82 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DF4926615696CD2008DDE82 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6DF4926E15696CD2008DDE82 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DF4926F15696CD2008DDE82 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		6DF4927115696CD2008DDE82 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DF4927215696CD2008DDE82 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DF4927715696CD2008DDE82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6DF4927815696CD2008DDE82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DF4927A15696CD2008DDE82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Vacation/Virtual Vacation-Prefix.pch";
+				INFOPLIST_FILE = "Virtual Vacation/Virtual Vacation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6DF4927B15696CD2008DDE82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Virtual Vacation/Virtual Vacation-Prefix.pch";
+				INFOPLIST_FILE = "Virtual Vacation/Virtual Vacation-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DF4925215696CD2008DDE82 /* Build configuration list for PBXProject "Virtual Vacation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DF4927715696CD2008DDE82 /* Debug */,
+				6DF4927815696CD2008DDE82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DF4927915696CD2008DDE82 /* Build configuration list for PBXNativeTarget "Virtual Vacation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DF4927A15696CD2008DDE82 /* Debug */,
+				6DF4927B15696CD2008DDE82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DF4924F15696CD2008DDE82 /* Project object */;
+}
