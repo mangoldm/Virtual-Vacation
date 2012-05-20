@@ -15,6 +15,8 @@
 		6D2B0EDD156972F300019A17 /* PhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928A15696D02008DDE82 /* PhotosTableViewController.m */; };
 		6D2B0EDE156972F600019A17 /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928C15696D02008DDE82 /* PlacesTableViewController.m */; };
 		6D2B0EDF156972F900019A17 /* ScrollingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */; };
+		6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD96296156978E1000CDC6F /* VacationsTableViewController.m */; };
+		6DD9629A15697A74000CDC6F /* briefcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9629915697A74000CDC6F /* briefcase.png */; };
 		6DF4925D15696CD2008DDE82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925C15696CD2008DDE82 /* UIKit.framework */; };
 		6DF4925F15696CD2008DDE82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925E15696CD2008DDE82 /* Foundation.framework */; };
 		6DF4926115696CD2008DDE82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4926015696CD2008DDE82 /* CoreGraphics.framework */; };
@@ -34,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6DD96295156978E1000CDC6F /* VacationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationsTableViewController.h; sourceTree = "<group>"; };
+		6DD96296156978E1000CDC6F /* VacationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationsTableViewController.m; sourceTree = "<group>"; };
+		6DD9629915697A74000CDC6F /* briefcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = briefcase.png; sourceTree = "<group>"; };
 		6DF4925815696CD2008DDE82 /* Virtual Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Vacation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF4925C15696CD2008DDE82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6DF4925E15696CD2008DDE82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -142,6 +147,8 @@
 				6DF4928D15696D02008DDE82 /* ScrollingPhotoViewController.h */,
 				6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */,
 				6DF4928F15696D02008DDE82 /* SplitViewBarButtonItemPresenter.h */,
+				6DD96295156978E1000CDC6F /* VacationsTableViewController.h */,
+				6DD96296156978E1000CDC6F /* VacationsTableViewController.m */,
 				6DF4926315696CD2008DDE82 /* Supporting Files */,
 			);
 			path = "Virtual Vacation";
@@ -164,6 +171,7 @@
 		6DF492A815697062008DDE82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6DD9629915697A74000CDC6F /* briefcase.png */,
 				6DF4929C1569704F008DDE82 /* clock.png */,
 				6DF4929D1569704F008DDE82 /* Icon.png */,
 				6DF4929E1569704F008DDE82 /* Icon@2x.png */,
@@ -234,6 +242,7 @@
 				6DF492A51569704F008DDE82 /* Icon-72.png in Resources */,
 				6DF492A61569704F008DDE82 /* Icon-72@2x.png in Resources */,
 				6DF492A71569704F008DDE82 /* world.png in Resources */,
+				6DD9629A15697A74000CDC6F /* briefcase.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +263,7 @@
 				6D2B0EDB156972EE00019A17 /* NavigationControllerWithOrientation.m in Sources */,
 				6D2B0ED7156972DF00019A17 /* FlickrFetcher.m in Sources */,
 				6DF4926D15696CD2008DDE82 /* AppDelegate.m in Sources */,
+				6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
