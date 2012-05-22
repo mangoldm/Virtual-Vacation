@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755A0156C397300D2247D /* FlickrFetcher.m */; };
+		6D0755A8156C46CC00D2247D /* TagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755A7156C46CC00D2247D /* TagsViewController.m */; };
 		6D2B0ED9156972E500019A17 /* FlickrPhotoAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928015696D02008DDE82 /* FlickrPhotoAnnotation.m */; };
 		6D2B0EDA156972EA00019A17 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928415696D02008DDE82 /* MapViewController.m */; };
 		6D2B0EDB156972EE00019A17 /* NavigationControllerWithOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928615696D02008DDE82 /* NavigationControllerWithOrientation.m */; };
@@ -35,10 +37,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D07559F156C397300D2247D /* FlickrFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
+		6D0755A0156C397300D2247D /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
+		6D0755A6156C46CC00D2247D /* TagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsViewController.h; sourceTree = "<group>"; };
+		6D0755A7156C46CC00D2247D /* TagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsViewController.m; sourceTree = "<group>"; };
 		6D9DEEF9156C364F00B0F360 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		6D9DEEFA156C364F00B0F360 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		6D9DEEFB156C366300B0F360 /* FlickrFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickrFetcher.h; sourceTree = "<group>"; };
-		6D9DEEFC156C366300B0F360 /* FlickrFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		6DD96295156978E1000CDC6F /* VacationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationsTableViewController.h; sourceTree = "<group>"; };
 		6DD96296156978E1000CDC6F /* VacationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationsTableViewController.m; sourceTree = "<group>"; };
 		6DD9629915697A74000CDC6F /* briefcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = briefcase.png; sourceTree = "<group>"; };
@@ -131,10 +135,10 @@
 				6D9DEEF9156C364F00B0F360 /* CoreDataTableViewController.h */,
 				6D9DEEFA156C364F00B0F360 /* CoreDataTableViewController.m */,
 				6DF4927C15696D02008DDE82 /* FlickrAPIKey.h */,
-				6D9DEEFB156C366300B0F360 /* FlickrFetcher.h */,
-				6D9DEEFC156C366300B0F360 /* FlickrFetcher.m */,
 				6DF4927F15696D02008DDE82 /* FlickrPhotoAnnotation.h */,
 				6DF4928015696D02008DDE82 /* FlickrPhotoAnnotation.m */,
+				6D07559F156C397300D2247D /* FlickrFetcher.h */,
+				6D0755A0156C397300D2247D /* FlickrFetcher.m */,
 				6DF4929215696E42008DDE82 /* MainStoryboard_iPhone.storyboard */,
 				6DF4929015696E36008DDE82 /* MainStoryboard_iPad.storyboard */,
 				6DF4928315696D02008DDE82 /* MapViewController.h */,
@@ -150,6 +154,8 @@
 				6DF4928D15696D02008DDE82 /* ScrollingPhotoViewController.h */,
 				6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */,
 				6DF4928F15696D02008DDE82 /* SplitViewBarButtonItemPresenter.h */,
+				6D0755A6156C46CC00D2247D /* TagsViewController.h */,
+				6D0755A7156C46CC00D2247D /* TagsViewController.m */,
 				6DD96295156978E1000CDC6F /* VacationsTableViewController.h */,
 				6DD96296156978E1000CDC6F /* VacationsTableViewController.m */,
 				6DF4926315696CD2008DDE82 /* Supporting Files */,
@@ -266,6 +272,8 @@
 				6D2B0EDB156972EE00019A17 /* NavigationControllerWithOrientation.m in Sources */,
 				6DF4926D15696CD2008DDE82 /* AppDelegate.m in Sources */,
 				6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */,
+				6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */,
+				6D0755A8156C46CC00D2247D /* TagsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
