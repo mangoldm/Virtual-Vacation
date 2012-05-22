@@ -71,7 +71,7 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="940" y="-879"/>
+            <point key="canvasLocation" x="940" y="-477"/>
         </scene>
         <!--Scrolling Photo View Controller-->
         <scene sceneID="GSd-Cv-caK">
@@ -170,7 +170,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="388" y="-1550"/>
+            <point key="canvasLocation" x="396" y="-1122"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="m8V-eP-hUn">
@@ -229,7 +229,7 @@
                     <navigationItem key="navigationItem" id="tEo-96-0Nh"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="940" y="-1550"/>
+            <point key="canvasLocation" x="940" y="-1122"/>
         </scene>
         <!--Places Table View Controller - Top Places-->
         <scene sceneID="0GA-xr-zcl">
@@ -290,7 +290,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="388" y="-457"/>
+            <point key="canvasLocation" x="396" y="-477"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cuh-xZ-gOT">
@@ -318,11 +318,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKf-oW-nzm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="3Ff-Yw-BS3" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HSg-Cn-R34">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="lif-7a-vc6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                         </subviews>
@@ -336,7 +336,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="940" y="-175"/>
+            <point key="canvasLocation" x="940" y="147"/>
         </scene>
         <!--Navigation Controller - Places-->
         <scene sceneID="qeT-Dh-djF">
@@ -356,7 +356,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-68" y="-457"/>
+            <point key="canvasLocation" x="-68" y="-477"/>
         </scene>
         <!--Navigation Controller - Recents-->
         <scene sceneID="XCx-Lz-QQK">
@@ -443,7 +443,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="388" y="147"/>
+            <point key="canvasLocation" x="396" y="147"/>
         </scene>
         <!--Navigation Controller - Virtual Vacations-->
         <scene sceneID="LIj-7p-GEY">
@@ -463,7 +463,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-68" y="-1550"/>
+            <point key="canvasLocation" x="-68" y="-1122"/>
         </scene>
     </scenes>
     <resources>
@@ -507,8 +507,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ok3-mC-APH"/>
+        <segue reference="fZW-9u-02X"/>
+        <segue reference="sQ2-IH-eOH"/>
         <segue reference="0zi-Eq-bjv"/>
-        <segue reference="M7b-Yc-y3d"/>
     </inferredMetricsTieBreakers>
 </document>
