@@ -119,7 +119,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1493" y="147"/>
+            <point key="canvasLocation" x="2573" y="147"/>
         </scene>
         <!--Tags View Controller - Tags-->
         <scene sceneID="Ksa-Tn-WSh">
@@ -132,14 +132,17 @@
                         <color key="backgroundColor" red="0.95119942179999994" green="0.95471938779999999" blue="0.73132307630000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.51372549020000002" green="0.1843137255" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Tag Cell" id="V7x-Da-5wt">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Tag Cell" id="V7x-Da-5wt">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Tag" id="z6A-0d-4aY"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -207,15 +210,15 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSg-nt-YiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="qAj-dk-gvp" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Sd2-tW-mFY">
+                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Sd2-tW-mFY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95119942179999994" green="0.95471938779999999" blue="0.73132307630000004" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.51372549020000002" green="0.1843137255" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Please Choose:" id="xaO-ZS-rRT">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LcX-vh-eu0" style="IBUITableViewCellStyleDefault" id="7Ti-X5-NMf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Itinerary Choice Cell" textLabel="LcX-vh-eu0" style="IBUITableViewCellStyleDefault" id="7Ti-X5-NMf">
                                         <rect key="frame" x="0.0" y="46" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -236,8 +239,8 @@
                                             <segue destination="8Qh-07-5Cg" kind="push" identifier="Show Itinerary" id="LbL-vm-iJK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="dxM-We-uxz" style="IBUITableViewCellStyleDefault" id="Rc2-Tb-ne4">
-                                        <rect key="frame" x="0.0" y="91" width="320" height="45"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Tag Search Choice Cell" textLabel="dxM-We-uxz" style="IBUITableViewCellStyleDefault" id="Rc2-Tb-ne4">
+                                        <rect key="frame" x="0.0" y="91" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -290,7 +293,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Itinerary" id="uH3-wu-Uim"/>
+                                    <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Itinerary Place" id="uH3-wu-Uim"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -304,7 +307,7 @@
             </objects>
             <point key="canvasLocation" x="1493" y="-1436"/>
         </scene>
-        <!--Photos Table View Controller - Photos for Place-->
+        <!--Photos Table View Controller - Photos-->
         <scene sceneID="QmX-RD-Lo7">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1g-2s-18e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -333,10 +336,10 @@
                             <outlet property="delegate" destination="AxP-kD-XMs" id="Q69-xi-ILU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Photos for Place" id="uBu-dT-ZiP"/>
+                    <navigationItem key="navigationItem" title="Photos" id="uBu-dT-ZiP"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2034" y="-1142"/>
+            <point key="canvasLocation" x="2036" y="-1110"/>
         </scene>
         <!--Places Table View Controller - Top Places-->
         <scene sceneID="0GA-xr-zcl">
@@ -620,8 +623,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ok3-mC-APH"/>
-        <segue reference="0zi-Eq-bjv"/>
+        <segue reference="z6A-0d-4aY"/>
         <segue reference="TrG-Vp-5Sg"/>
+        <segue reference="0zi-Eq-bjv"/>
+        <segue reference="Ok3-mC-APH"/>
     </inferredMetricsTieBreakers>
 </document>

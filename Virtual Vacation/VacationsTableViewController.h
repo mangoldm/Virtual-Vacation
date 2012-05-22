@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
-@interface VacationsTableViewController : UITableViewController
+@interface VacationsTableViewController : CoreDataTableViewController
 
+@property (nonatomic, strong) UIManagedDocument *vacationDatabase;
 @end
