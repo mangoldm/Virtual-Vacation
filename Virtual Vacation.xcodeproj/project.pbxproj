@@ -10,6 +10,7 @@
 		6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755A0156C397300D2247D /* FlickrFetcher.m */; };
 		6D0755A8156C46CC00D2247D /* TagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755A7156C46CC00D2247D /* TagsViewController.m */; };
 		6D0755AB156C548900D2247D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755AA156C548900D2247D /* CoreDataTableViewController.m */; };
+		6D0755AE156C6D4600D2247D /* VacationDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */; };
 		6D2B0ED9156972E500019A17 /* FlickrPhotoAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928015696D02008DDE82 /* FlickrPhotoAnnotation.m */; };
 		6D2B0EDA156972EA00019A17 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928415696D02008DDE82 /* MapViewController.m */; };
 		6D2B0EDB156972EE00019A17 /* NavigationControllerWithOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928615696D02008DDE82 /* NavigationControllerWithOrientation.m */; };
@@ -44,6 +45,7 @@
 		6D0755A7156C46CC00D2247D /* TagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsViewController.m; sourceTree = "<group>"; };
 		6D0755A9156C548900D2247D /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		6D0755AA156C548900D2247D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6DD96295156978E1000CDC6F /* VacationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationsTableViewController.h; sourceTree = "<group>"; };
 		6DD96296156978E1000CDC6F /* VacationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationsTableViewController.m; sourceTree = "<group>"; };
 		6DD9629915697A74000CDC6F /* briefcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = briefcase.png; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				6D0755A7156C46CC00D2247D /* TagsViewController.m */,
 				6DD96295156978E1000CDC6F /* VacationsTableViewController.h */,
 				6DD96296156978E1000CDC6F /* VacationsTableViewController.m */,
+				6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */,
 				6DF4926315696CD2008DDE82 /* Supporting Files */,
 			);
 			path = "Virtual Vacation";
@@ -276,6 +279,7 @@
 				6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */,
 				6D0755A8156C46CC00D2247D /* TagsViewController.m in Sources */,
 				6D0755AB156C548900D2247D /* CoreDataTableViewController.m in Sources */,
+				6D0755AE156C6D4600D2247D /* VacationDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */,
+			);
+			currentVersion = 6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */;
+			path = VacationDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6DF4924F15696CD2008DDE82 /* Project object */;
 }
