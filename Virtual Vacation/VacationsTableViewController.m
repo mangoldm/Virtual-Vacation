@@ -10,6 +10,10 @@
 
 #import "VacationsTableViewController.h"
 #import "FlickrFetcher.h"
+#import "Photo.h"
+#import "Tag.h"
+#import "Place.h"
+#import "Vacation.h"
 
 @interface VacationsTableViewController ()
 
@@ -31,8 +35,8 @@
     dispatch_async(fetchQ, ^{
         NSArray *photos = [FlickrFetcher recentGeoreferencedPhotos];
         [document.managedObjectContext performBlock:^{
-            for (NSDictionary *flickrInfor in photos) {
-                // start creating object in document's context
+            for (NSDictionary *flickrInfo in photos) {
+                
             }
         }];
     });
