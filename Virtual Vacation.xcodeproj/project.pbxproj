@@ -28,6 +28,7 @@
 		6DDE9BDE156D92C600A65A0F /* Photo+Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE9BDD156D92C600A65A0F /* Photo+Flickr.m */; };
 		6DDE9BE4156EF7C400A65A0F /* Place+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE9BE3156EF7C400A65A0F /* Place+Create.m */; };
 		6DDE9BE7156F01F200A65A0F /* Tag+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE9BE6156F01F200A65A0F /* Tag+Create.m */; };
+		6DDE9BEA15712FAF00A65A0F /* VacationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DDE9BE915712FAF00A65A0F /* VacationHelper.m */; };
 		6DF4925D15696CD2008DDE82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925C15696CD2008DDE82 /* UIKit.framework */; };
 		6DF4925F15696CD2008DDE82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4925E15696CD2008DDE82 /* Foundation.framework */; };
 		6DF4926115696CD2008DDE82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF4926015696CD2008DDE82 /* CoreGraphics.framework */; };
@@ -72,6 +73,8 @@
 		6DDE9BE3156EF7C400A65A0F /* Place+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Create.m"; sourceTree = "<group>"; };
 		6DDE9BE5156F01F200A65A0F /* Tag+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+Create.h"; sourceTree = "<group>"; };
 		6DDE9BE6156F01F200A65A0F /* Tag+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+Create.m"; sourceTree = "<group>"; };
+		6DDE9BE815712FAF00A65A0F /* VacationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationHelper.h; sourceTree = "<group>"; };
+		6DDE9BE915712FAF00A65A0F /* VacationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationHelper.m; sourceTree = "<group>"; };
 		6DF4925815696CD2008DDE82 /* Virtual Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Vacation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF4925C15696CD2008DDE82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6DF4925E15696CD2008DDE82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -202,6 +205,8 @@
 				6D0755A7156C46CC00D2247D /* TagsViewController.m */,
 				6DD96295156978E1000CDC6F /* VacationsTableViewController.h */,
 				6DD96296156978E1000CDC6F /* VacationsTableViewController.m */,
+				6DDE9BE815712FAF00A65A0F /* VacationHelper.h */,
+				6DDE9BE915712FAF00A65A0F /* VacationHelper.m */,
 				6DDE9BDC156D92C600A65A0F /* Photo+Flickr.h */,
 				6DDE9BDD156D92C600A65A0F /* Photo+Flickr.m */,
 				6DDE9BE5156F01F200A65A0F /* Tag+Create.h */,
@@ -334,6 +339,7 @@
 				6DDE9BDE156D92C600A65A0F /* Photo+Flickr.m in Sources */,
 				6DDE9BE4156EF7C400A65A0F /* Place+Create.m in Sources */,
 				6DDE9BE7156F01F200A65A0F /* Tag+Create.m in Sources */,
+				6DDE9BEA15712FAF00A65A0F /* VacationHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

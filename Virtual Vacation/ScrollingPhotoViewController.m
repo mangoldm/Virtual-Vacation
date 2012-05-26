@@ -11,6 +11,7 @@
 #import "PhotosTableViewController.h"
 #import "FlickrFetcher.h"
 #import "MapViewController.h"
+#import "Photo+Flickr.h"
 
 @interface ScrollingPhotoViewController () <UIScrollViewDelegate, MapViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -27,6 +28,9 @@
 @synthesize photoData   = _photoData;
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
+
+- (IBAction)vacation:(UIBarButtonItem *)sender {
+}
 
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender
 {
@@ -227,6 +231,55 @@
     dispatch_release(photoQueue);
 }
 
+- (BOOL) photoIsOnVacation
+{
+    NSString *photoID       = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate       = [NSPredicate predicateWithFormat:@"unique = %@", photoID];
+    
+    // Identify the documents folder URL.
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSError *error             = nil;
+    NSURL *documentsURL       = [fileManager URLForDirectory:NSDocumentDirectory
+                                                     inDomain:NSUserDomainMask
+                                            appropriateForURL:nil
+                                                       create:NO
+                                                        error:&error];
+    if (documentsURL == nil) {
+        NSLog(@"Could not access documents directory\n%@", [error localizedDescription]);
+    }
+    
+    // Get the Vacations on file then iterate through them, searching for the photo.
+    error          = nil;
+    NSArray *items = [[NSFileManager defaultManager]
+                      contentsOfDirectoryAtURL:documentsURL
+                      includingPropertiesForKeys:[NSArray array]
+                      options:0
+                      error:&error];
+    
+    NSLog(@"documentsURL:%@",documentsURL);
+    
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.vacationDatabase.fileURL path]]) {
+//        
+//    }
+//    NSMutableArray *dirs = [NSMutableArray array];
+//    for (NSURL *url in items) {
+//        
+//        }
+//    
+//    error   = nil;
+//    NSArray *matches = [self.vacationDatabase.managedObjectContext executeFetchRequest:request error:&error];
+//    
+//    if (!matches) {
+//        return NO;
+//    } else {
+//        return YES;
+//    }
+    
+    return NO;
+    
+}
+
 #pragma mark - Map View Controller Delegate
 
 // Sets places as map annotations
@@ -249,6 +302,7 @@
         PhotosTableViewController *callingViewController = [self.navigationController.viewControllers objectAtIndex:viewControllerCount - 2];
         [callingViewController setDelegate:self];
     }
+BOOL mike = [self photoIsOnVacation];
 }
 
 - (void)viewWillAppear:(BOOL)animated

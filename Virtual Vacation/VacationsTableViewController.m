@@ -27,11 +27,17 @@
 - (void)setupFetchedResultsController
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]; // No predicate specified because we want all vacations.
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:self.vacationDatabase.managedObjectContext
-                                                                          sectionNameKeyPath:@"Section" cacheName:nil];
+    // No predicate specified because we want all vacations.
+    request.sortDescriptors = [NSArray arrayWithObject:
+                               [NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                             ascending:YES
+                                                              selector:@selector(localizedCaseInsensitiveCompare:)]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc]
+                                     initWithFetchRequest:request
+                                     managedObjectContext:self.vacationDatabase.managedObjectContext
+                                     sectionNameKeyPath:@"Section" cacheName:nil];
 }
 
 // Populate database with test data
@@ -51,6 +57,7 @@
 
 - (void)useDocument
 {
+    NSLog(@"url:%@",[self.vacationDatabase.fileURL path]);
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self.vacationDatabase.fileURL path]]) {
         [self.vacationDatabase saveToURL:self.vacationDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             [self setupFetchedResultsController];

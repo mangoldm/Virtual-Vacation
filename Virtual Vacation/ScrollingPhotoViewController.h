@@ -15,6 +15,7 @@
 #define MAXIMUM_CACHE_SIZE 10000000 // 10MB
 
 @interface ScrollingPhotoViewController : UIViewController <UINavigationBarDelegate, PhotosTableViewControllerDelegate>
+- (IBAction)vacation:(UIBarButtonItem *)sender;
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender;
 @property (nonatomic, strong) id chosenPhoto;
 @end
