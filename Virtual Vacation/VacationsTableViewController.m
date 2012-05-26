@@ -9,8 +9,8 @@
 //
 
 #import "VacationsTableViewController.h"
+#import "Photo+Flickr.h"
 #import "FlickrFetcher.h"
-#import "Photo.h"
 #import "Tag.h"
 #import "Place.h"
 #import "Vacation.h"
@@ -23,9 +23,15 @@
 
 @synthesize vacationDatabase = _vacationDatabase;
 
+// Determines what data populates the Vacations Table
 - (void)setupFetchedResultsController
 {
-    // self.fetchesResultsController = ...
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]; // No predicate specified because we want all vacations.
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.vacationDatabase.managedObjectContext
+                                                                          sectionNameKeyPath:@"Section" cacheName:nil];
 }
 
 // Populate database with test data
@@ -36,7 +42,7 @@
         NSArray *photos = [FlickrFetcher recentGeoreferencedPhotos];
         [document.managedObjectContext performBlock:^{
             for (NSDictionary *flickrInfo in photos) {
-                
+                [Photo photoWithFlickrInfo:flickrInfo inManagedObjectContext:document.managedObjectContext];
             }
         }];
     });
@@ -82,7 +88,9 @@
     static NSString *CellIdentifier = @"Vacation Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    Vacation *vacation = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = vacation.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [vacation.photos count]];
     
     return cell;
 }
