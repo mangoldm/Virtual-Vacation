@@ -10,8 +10,7 @@
 
 @implementation VacationHelper
 
-+ (void)openVacation:(NSString *)vacationName
-          usingBlock:(completion_block_t)completionBlock
++ (UIManagedDocument *)sharedManagedDocumentForVacation:( NSString *)vacationName;
 {
     
 }

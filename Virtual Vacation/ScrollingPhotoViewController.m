@@ -29,7 +29,9 @@
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
 
-- (IBAction)vacation:(UIBarButtonItem *)sender {
+- (IBAction)vacation:(UIBarButtonItem *)sender
+{
+    
 }
 
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender
@@ -231,6 +233,7 @@
     dispatch_release(photoQueue);
 }
 
+// Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
     NSString *photoID       = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
@@ -241,40 +244,13 @@
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSError *error             = nil;
     NSURL *documentsURL       = [fileManager URLForDirectory:NSDocumentDirectory
-                                                     inDomain:NSUserDomainMask
-                                            appropriateForURL:nil
-                                                       create:NO
-                                                        error:&error];
+                                                    inDomain:NSUserDomainMask
+                                           appropriateForURL:nil
+                                                      create:NO
+                                                       error:&error];
     if (documentsURL == nil) {
         NSLog(@"Could not access documents directory\n%@", [error localizedDescription]);
     }
-    
-    // Get the Vacations on file then iterate through them, searching for the photo.
-    error          = nil;
-    NSArray *items = [[NSFileManager defaultManager]
-                      contentsOfDirectoryAtURL:documentsURL
-                      includingPropertiesForKeys:[NSArray array]
-                      options:0
-                      error:&error];
-    
-    NSLog(@"documentsURL:%@",documentsURL);
-    
-//    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.vacationDatabase.fileURL path]]) {
-//        
-//    }
-//    NSMutableArray *dirs = [NSMutableArray array];
-//    for (NSURL *url in items) {
-//        
-//        }
-//    
-//    error   = nil;
-//    NSArray *matches = [self.vacationDatabase.managedObjectContext executeFetchRequest:request error:&error];
-//    
-//    if (!matches) {
-//        return NO;
-//    } else {
-//        return YES;
-//    }
     
     return NO;
     
@@ -302,13 +278,13 @@
         PhotosTableViewController *callingViewController = [self.navigationController.viewControllers objectAtIndex:viewControllerCount - 2];
         [callingViewController setDelegate:self];
     }
-BOOL mike = [self photoIsOnVacation];
+    BOOL inDatabase = [self photoIsOnVacation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-        
+    
     self.scrollView.frame = self.view.frame;
     self.imageView.frame  = self.view.frame;
     self.spinner.center = self.view.center;

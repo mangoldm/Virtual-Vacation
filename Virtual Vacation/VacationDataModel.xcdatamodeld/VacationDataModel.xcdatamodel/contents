@@ -10,6 +10,7 @@
         <relationship name="whereTaken" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="seenIn" inverseEntity="Place" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
+        <attribute name="addedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="seenIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="whereTaken" inverseEntity="Photo" syncable="YES"/>
         <relationship name="visitedOnVacation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Vacation" inverseName="itinerary" inverseEntity="Vacation" syncable="YES"/>
@@ -25,7 +26,7 @@
     </entity>
     <elements>
         <element name="Photo" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="Place" positionX="124" positionY="57" width="128" height="90"/>
+        <element name="Place" positionX="124" positionY="57" width="128" height="105"/>
         <element name="Tag" positionX="412" positionY="126" width="128" height="75"/>
         <element name="Vacation" positionX="-110" positionY="162" width="128" height="90"/>
     </elements>

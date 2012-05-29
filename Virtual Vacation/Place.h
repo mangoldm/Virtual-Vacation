@@ -2,7 +2,7 @@
 //  Place.h
 //  Virtual Vacation
 //
-//  Created by Michael Mangold on 5/22/12.
+//  Created by Michael Mangold on 5/27/12.
 //  Copyright (c) 2012 Michael Mangold. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Place : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSDate * addedDate;
 @property (nonatomic, retain) NSSet *seenIn;
 @property (nonatomic, retain) Vacation *visitedOnVacation;
 @end

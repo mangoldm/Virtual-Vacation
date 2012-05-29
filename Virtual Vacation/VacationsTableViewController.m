@@ -5,8 +5,6 @@
 //  Created by Michael Mangold on 5/20/12.
 //  Copyright (c) 2012 Michael Mangold. All rights reserved.
 //
-//  Displays a user's Virtual Vacations
-//
 
 #import "VacationsTableViewController.h"
 #import "Photo+Flickr.h"
@@ -40,7 +38,7 @@
                                      sectionNameKeyPath:@"Section" cacheName:nil];
 }
 
-// Populate database with test data
+// Populate photo table with test data -- I don't think I need this, as photos will already be available in the places, photos, and recents table view controllers.
 - (void)fetchFlickrDataIntoDocument:(UIManagedDocument *)document
 {
     dispatch_queue_t fetchQ = dispatch_queue_create("Flickr fetcher", NULL);
