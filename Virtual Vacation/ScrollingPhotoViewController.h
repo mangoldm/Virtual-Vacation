@@ -11,13 +11,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotosTableViewController.h"
+#import "Photo.h"
+#import "VacationHelper.h"
 
 #define MAXIMUM_CACHE_SIZE 10000000 // 10MB
 #define TITLE_ADD_TO_VACATION @"+"
 #define TITLE_REMOVE_FROM_VACATION @"-"
 
 @interface ScrollingPhotoViewController : UIViewController <UINavigationBarDelegate, PhotosTableViewControllerDelegate>
+
 - (IBAction)vacation:(UIBarButtonItem *)sender;
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender;
+
 @property (nonatomic, strong) id chosenPhoto;
 @end

@@ -12,6 +12,7 @@
 #import "FlickrFetcher.h"
 #import "MapViewController.h"
 #import "Photo+Flickr.h"
+#import "VacationHelper.h"
 
 @interface ScrollingPhotoViewController () <UIScrollViewDelegate, MapViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -29,10 +30,23 @@
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
 
+- (void)addPhotoToVacation:(UIManagedDocument *)vacationDocument
+{
+    NSLog(@"Adding Photo");
+}
+
+- (void)removePhoto:(Photo *) fromVacation:(UIManagedDocument *)vacationDocument
+{
+    NSLog(@"Removing Photo");
+}
+
+// Clicked when user wants to add or remove the photo from a virtual vacation.
 - (IBAction)vacation:(UIBarButtonItem *)sender
 {
     if ([sender.title isEqualToString:TITLE_ADD_TO_VACATION]) {
-        NSLog(@"Adding...");
+        [VacationHelper openVacation:@"My Vacation" usingBlock:^(UIManagedDocument *vacation){
+            [self addPhotoToVacation:vacation];
+        }];
     } else {
         NSLog(@"Removing");
     }

@@ -10,6 +10,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
+#import "ScrollingPhotoViewController.h"
 
 @interface VacationsTableViewController : CoreDataTableViewController
 
