@@ -31,7 +31,11 @@
 
 - (IBAction)vacation:(UIBarButtonItem *)sender
 {
-    
+    if ([sender.title isEqualToString:TITLE_ADD_TO_VACATION]) {
+        NSLog(@"Adding...");
+    } else {
+        NSLog(@"Removing");
+    }
 }
 
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender
@@ -257,8 +261,12 @@
                                                               includingPropertiesForKeys:keys
                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                    error:nil];
-        if (!vacationURLs) {
+        if (!vacationURLs) { // No virtual vacations
             photoOnFile = NO;
+        } else {
+            for (UIManagedDocument *vacationDatabase in vacationURLs) {
+                // search for photo
+            }
         }
     }
     
@@ -291,8 +299,10 @@
     }
     
     // Is this photo in the Vacations database?
-    if (![self photoIsOnVacation]) {
-        self.navigationItem.rightBarButtonItem.title = @"Add to Vacation";
+    if ([self photoIsOnVacation]) {
+        self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
+    } else {
+        self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
     }
 }
 

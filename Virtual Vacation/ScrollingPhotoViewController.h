@@ -13,6 +13,8 @@
 #import "PhotosTableViewController.h"
 
 #define MAXIMUM_CACHE_SIZE 10000000 // 10MB
+#define TITLE_ADD_TO_VACATION @"+"
+#define TITLE_REMOVE_FROM_VACATION @"-"
 
 @interface ScrollingPhotoViewController : UIViewController <UINavigationBarDelegate, PhotosTableViewControllerDelegate>
 - (IBAction)vacation:(UIBarButtonItem *)sender;
