@@ -236,6 +236,7 @@
 // Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
+    BOOL photoOnFile = NO;
     NSString *photoID       = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate       = [NSPredicate predicateWithFormat:@"unique = %@", photoID];
@@ -250,9 +251,18 @@
                                                        error:&error];
     if (documentsURL == nil) {
         NSLog(@"Could not access documents directory\n%@", [error localizedDescription]);
+    } else {
+        NSArray *keys = [NSArray arrayWithObjects:NSURLNameKey, nil];
+        NSArray *vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
+                                                              includingPropertiesForKeys:keys
+                                                                                 options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                   error:nil];
+        if (!vacationURLs) {
+            photoOnFile = NO;
+        }
     }
     
-    return NO;
+    return photoOnFile;
     
 }
 
@@ -273,12 +283,17 @@
     [super viewDidLoad];
     self.scrollView.delegate = self;
     
+    // Set the calling view controller's delegate to self
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) { // If iPhone
         NSUInteger viewControllerCount = [self.navigationController.viewControllers count];
         PhotosTableViewController *callingViewController = [self.navigationController.viewControllers objectAtIndex:viewControllerCount - 2];
         [callingViewController setDelegate:self];
     }
-    BOOL inDatabase = [self photoIsOnVacation];
+    
+    // Is this photo in the Vacations database?
+    if (![self photoIsOnVacation]) {
+        self.navigationItem.rightBarButtonItem.title = @"Add to Vacation";
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

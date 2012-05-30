@@ -84,7 +84,7 @@
     if (!self.vacationDatabase) {
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:@"Default Vacation Database"];
-        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
+        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // Create database
     }
 }
 
