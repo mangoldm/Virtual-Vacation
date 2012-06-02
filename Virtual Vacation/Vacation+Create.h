@@ -9,5 +9,5 @@
 #import "Vacation.h"
 
 @interface Vacation (Create)
-
++ (Vacation *)vacationWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context;
 @end

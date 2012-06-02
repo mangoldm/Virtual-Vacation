@@ -10,11 +10,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^completion_block_t)(UIManagedDocument *vacation);
+typedef void (^completion_block_t)(UIManagedDocument *vacationDocument);
 
 @interface VacationHelper : NSObject
 
-+ (void)openVacation:(NSString *)vacationName
++ (void)openVacationWithName:(NSString *)vacationName
           usingBlock:(completion_block_t)completionBlock;
 
 @end
