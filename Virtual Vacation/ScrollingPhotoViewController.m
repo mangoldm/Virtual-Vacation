@@ -35,7 +35,6 @@
 
 - (void)addPhotoToVacation:(NSString *)vacationName inDocument:(UIManagedDocument *)vacationDocument
 {
-    NSLog(@"Adding Photo");
     NSManagedObjectContext *context = vacationDocument.managedObjectContext;
     [Photo photoWithFlickrInfo:self.chosenPhoto inManagedObjectContext:context];
     
@@ -43,7 +42,7 @@
 
 - (void)removePhoto:(Photo *) fromVacation:(UIManagedDocument *)vacationDocument
 {
-    NSLog(@"Removing Photo");
+    NSLog(@"...Removing Photo");
 }
 
 // Clicked when user wants to add or remove the photo from a virtual vacation.
@@ -55,7 +54,7 @@
             [self addPhotoToVacation:vacationName inDocument:vacationDocument];
         }];
     } else {
-        NSLog(@"Removing");
+        NSLog(@"...Removing");
     }
 }
 
@@ -265,11 +264,6 @@
     dispatch_release(photoQueue);
 }
 
--(void)vacationOpened:(UIManagedDocument *)vacation
-{
-    NSLog(@"vacation.description: %@", vacation.description);
-}
-
 // Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
@@ -295,29 +289,23 @@
                                                               includingPropertiesForKeys:keys
                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                    error:nil];
-        NSLog(@"[vacationURLs count]:%i", [vacationURLs count]);
         if (!vacationURLs) { // No virtual vacations
             photoOnFile = NO;
         } else { // Search each virtual vacation for the photo.
             for (NSURL *vacationURL in vacationURLs) {
-                NSLog(@"vacationURL:%@", vacationURL);
                 NSError *errorForName = nil;
                 NSString *vacationName;
                 [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
-                NSLog(@"vacationName:%@", vacationName);
                 self.vacationDocumentName = vacationName;
-                [VacationHelper openVacationWithName:self.vacationDocumentName usingBlock:^(UIManagedDocument *vacationDocument) {
-                    [self vacationOpened:vacationDocument];
+                [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
+                    
                     // search for photo
-//                    NSLog(@"Executing completion block.");
-//                    NSError *error = nil;
-//                    NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
-//                    NSArray *checkPhotos = [moc executeFetchRequest:request error:&error];
-//                    NSLog(@"[checkPhotos count]:%i", [checkPhotos count]);
-//                    Photo *checkPhoto = [checkPhotos lastObject];
-//                    NSLog(@"checkPhoto.title:%@", checkPhoto.title);
-//                    if (checkPhotos) photoOnFile = YES;
-//                    NSLog(@"photoOnFile:%i", photoOnFile);
+                    NSError *error              = nil;
+                    NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+                    NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
+                    Photo *checkPhoto           = [checkPhotos lastObject];
+                    NSString *currentPhotoID    = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+                    if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
                 }];
             }
         }

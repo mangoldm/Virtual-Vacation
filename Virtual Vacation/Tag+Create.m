@@ -17,8 +17,8 @@
     NSArray *photoTags= [tagsString componentsSeparatedByString:@" "];
     for (Tag *photoTag in photoTags) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
-        request.predicate = [NSPredicate predicateWithFormat:@"unique = %@",unique];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"unique" ascending:YES];
+        request.predicate = [NSPredicate predicateWithFormat:@"taggedIn = %@",unique];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"taggedIn" ascending:YES];
         request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         
         NSError *error = nil;
