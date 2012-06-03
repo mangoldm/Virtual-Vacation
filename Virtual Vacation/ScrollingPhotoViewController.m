@@ -200,6 +200,13 @@
     
     NSString *photoID = [photo objectForKey:FLICKR_PHOTO_ID];
     
+    // Is this photo in the Vacations database?
+    if ([self photoIsOnVacation]) {
+        self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
+    } else {
+        self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
+    }
+    
     dispatch_queue_t photoQueue = dispatch_queue_create("photo downloader", NULL);
     dispatch_async(photoQueue, ^{
         // Retrieve photo from cache when possible
@@ -259,6 +266,7 @@
 // Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
+    // Initialize local variables.
     BOOL photoOnFile = NO;
     NSString *photoID       = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
@@ -283,8 +291,15 @@
         if (!vacationURLs) { // No virtual vacations
             photoOnFile = NO;
         } else {
-            for (UIManagedDocument *vacationDatabase in vacationURLs) {
+            for (UIManagedDocument *vacationDocument in vacationURLs) { // this is wrong, need to convert the urls to documents
+                
                 // search for photo
+                NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+                NSArray *photos = [moc executeFetchRequest:request error:&error];
+                if (photos) {
+                    photoOnFile = YES;
+                }
+                NSLog(@"photoOnFile:%i", photoOnFile);
             }
         }
     }
@@ -315,13 +330,6 @@
         NSUInteger viewControllerCount = [self.navigationController.viewControllers count];
         PhotosTableViewController *callingViewController = [self.navigationController.viewControllers objectAtIndex:viewControllerCount - 2];
         [callingViewController setDelegate:self];
-    }
-    
-    // Is this photo in the Vacations database?
-    if ([self photoIsOnVacation]) {
-        self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
-    } else {
-        self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
     }
 }
 
