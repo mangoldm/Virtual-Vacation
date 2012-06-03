@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) NSData *photoData;
+@property (weak, nonatomic) NSString *vacationDocumentName;
 @end
 
 @implementation ScrollingPhotoViewController
@@ -28,6 +29,7 @@
 @synthesize chosenPhoto = _chosenPhoto;
 @synthesize spinner     = _spinner;
 @synthesize photoData   = _photoData;
+@synthesize vacationDocumentName = _vacationDocumentName;
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
 
@@ -283,11 +285,12 @@
     if (documentsURL == nil) {
         NSLog(@"Could not access documents directory\n%@", [errorForURLs localizedDescription]);
     } else {
-        NSArray *keys = [NSArray arrayWithObjects:NSURLNameKey, nil];
+        NSArray *keys = [NSArray arrayWithObjects:NSURLLocalizedNameKey, nil];
         NSArray *vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
                                                               includingPropertiesForKeys:keys
                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                    error:nil];
+        NSLog(@"[vacationURLs count]:%i", [vacationURLs count]);
         if (!vacationURLs) { // No virtual vacations
             photoOnFile = NO;
         } else { // Search each virtual vacation for the photo.
@@ -297,16 +300,20 @@
                 NSString *vacationName;
                 [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
                 NSLog(@"vacationName:%@", vacationName);
-                [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
+                self.vacationDocumentName = vacationName;
+                [VacationHelper openVacationWithName:self.vacationDocumentName usingBlock:^(UIManagedDocument *vacationDocument) {
                     // search for photo
                     NSError *error = nil;
                     NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
-                    NSArray *photos = [moc executeFetchRequest:request error:&error];
-                    if (photos) photoOnFile = YES;
+                    NSArray *checkPhotos = [moc executeFetchRequest:request error:&error];
+                    NSLog(@"[checkPhotos count]:%i", [checkPhotos count]);
+                    Photo *checkPhoto = [checkPhotos lastObject];
+                    NSLog(@"checkPhoto.title:%@", checkPhoto.title);
+                    if (checkPhotos) photoOnFile = YES;
+                    NSLog(@"photoOnFile:%i", photoOnFile);
                 }];
             }
         }
-        NSLog(@"photoOnFile:%i", photoOnFile);
     }
     return photoOnFile;
 }

@@ -23,11 +23,12 @@
     
     // Get documents directory and path.
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:vacationName];
+    url        = [url URLByAppendingPathComponent:vacationName];
     
     // Create the document and open if a match exists on file.
     UIManagedDocument *vacationDocument = [[UIManagedDocument alloc] initWithFileURL:url];
     if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+        NSLog(@"vacationDocument.documentState:%i", vacationDocument.documentState);
         [vacationDocument openWithCompletionHandler:^(BOOL success) {
             if (success) NSLog(@"Document was opened.");
             else NSLog (@"Couldn't open document at %@", url);
@@ -35,10 +36,10 @@
             
             // No match exists, so save the document to file.
             [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating
-              completionHandler:^(BOOL success) {
-                  if (success) NSLog(@"Document was created.");
-                  else NSLog(@"Couldn't create document at %@", url);
-              }]; }
+                      completionHandler:^(BOOL success) {
+                          if (success) NSLog(@"Document was created.");
+                          else NSLog(@"Couldn't create document at %@", url);
+                      }]; }
 }
 
 @end
