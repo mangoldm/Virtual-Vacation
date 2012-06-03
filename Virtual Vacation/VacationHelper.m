@@ -30,16 +30,19 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         NSLog(@"vacationDocument.documentState:%i", vacationDocument.documentState);
         [vacationDocument openWithCompletionHandler:^(BOOL success) {
-            if (success) NSLog(@"Document was opened.");
+            if (success) NSLog(@"Document was op op opened.");
             else NSLog (@"Couldn't open document at %@", url);
-        }]; } else {
-            
-            // No match exists, so save the document to file.
-            [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating
-                      completionHandler:^(BOOL success) {
-                          if (success) NSLog(@"Document was created.");
-                          else NSLog(@"Couldn't create document at %@", url);
-                      }]; }
+        }];
+    } else {
+        
+        // No match exists, so save the document to file.
+        [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating
+                  completionHandler:^(BOOL success) {
+                      if (success) NSLog(@"Document was created.");
+                      else NSLog(@"Couldn't create document at %@", url);
+                  }];
+    }
+    NSLog(@"Exiting helper.");
 }
 
 @end

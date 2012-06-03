@@ -265,6 +265,11 @@
     dispatch_release(photoQueue);
 }
 
+-(void)vacationOpened:(UIManagedDocument *)vacation
+{
+    NSLog(@"vacation.description: %@", vacation.description);
+}
+
 // Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
@@ -302,15 +307,17 @@
                 NSLog(@"vacationName:%@", vacationName);
                 self.vacationDocumentName = vacationName;
                 [VacationHelper openVacationWithName:self.vacationDocumentName usingBlock:^(UIManagedDocument *vacationDocument) {
+                    [self vacationOpened:vacationDocument];
                     // search for photo
-                    NSError *error = nil;
-                    NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
-                    NSArray *checkPhotos = [moc executeFetchRequest:request error:&error];
-                    NSLog(@"[checkPhotos count]:%i", [checkPhotos count]);
-                    Photo *checkPhoto = [checkPhotos lastObject];
-                    NSLog(@"checkPhoto.title:%@", checkPhoto.title);
-                    if (checkPhotos) photoOnFile = YES;
-                    NSLog(@"photoOnFile:%i", photoOnFile);
+//                    NSLog(@"Executing completion block.");
+//                    NSError *error = nil;
+//                    NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+//                    NSArray *checkPhotos = [moc executeFetchRequest:request error:&error];
+//                    NSLog(@"[checkPhotos count]:%i", [checkPhotos count]);
+//                    Photo *checkPhoto = [checkPhotos lastObject];
+//                    NSLog(@"checkPhoto.title:%@", checkPhoto.title);
+//                    if (checkPhotos) photoOnFile = YES;
+//                    NSLog(@"photoOnFile:%i", photoOnFile);
                 }];
             }
         }
