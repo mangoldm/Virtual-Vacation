@@ -23,7 +23,7 @@
     
     // Get documents directory and path.
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"Default Vacation Database"];
+    url = [url URLByAppendingPathComponent:vacationName];
     
     // Create the document and open if a match exists on file.
     UIManagedDocument *vacationDocument = [[UIManagedDocument alloc] initWithFileURL:url];

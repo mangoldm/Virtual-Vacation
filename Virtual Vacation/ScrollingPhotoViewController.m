@@ -267,21 +267,21 @@
 - (BOOL) photoIsOnVacation
 {
     // Initialize local variables.
-    BOOL photoOnFile = NO;
-    NSString *photoID       = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    request.predicate       = [NSPredicate predicateWithFormat:@"unique = %@", photoID];
+    __block BOOL photoOnFile = NO;
+    NSString *photoID        = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+    NSFetchRequest *request  = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate        = [NSPredicate predicateWithFormat:@"unique = %@", photoID];
     
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSError *error             = nil;
-    NSURL *documentsURL       = [fileManager URLForDirectory:NSDocumentDirectory
-                                                    inDomain:NSUserDomainMask
-                                           appropriateForURL:nil
-                                                      create:NO
-                                                       error:&error];
+    NSError *errorForURLs      = nil;
+    NSURL *documentsURL        = [fileManager URLForDirectory:NSDocumentDirectory
+                                                     inDomain:NSUserDomainMask
+                                            appropriateForURL:nil
+                                                       create:NO
+                                                        error:&errorForURLs];
     if (documentsURL == nil) {
-        NSLog(@"Could not access documents directory\n%@", [error localizedDescription]);
+        NSLog(@"Could not access documents directory\n%@", [errorForURLs localizedDescription]);
     } else {
         NSArray *keys = [NSArray arrayWithObjects:NSURLNameKey, nil];
         NSArray *vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
@@ -290,22 +290,25 @@
                                                                                    error:nil];
         if (!vacationURLs) { // No virtual vacations
             photoOnFile = NO;
-        } else {
-            for (UIManagedDocument *vacationDocument in vacationURLs) { // this is wrong, need to convert the urls to documents
-                
-                // search for photo
-                NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
-                NSArray *photos = [moc executeFetchRequest:request error:&error];
-                if (photos) {
-                    photoOnFile = YES;
-                }
-                NSLog(@"photoOnFile:%i", photoOnFile);
+        } else { // Search each virtual vacation for the photo.
+            for (NSURL *vacationURL in vacationURLs) {
+                NSLog(@"vacationURL:%@", vacationURL);
+                NSError *errorForName = nil;
+                NSString *vacationName;
+                [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
+                NSLog(@"vacationName:%@", vacationName);
+                [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
+                    // search for photo
+                    NSError *error = nil;
+                    NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+                    NSArray *photos = [moc executeFetchRequest:request error:&error];
+                    if (photos) photoOnFile = YES;
+                }];
             }
         }
+        NSLog(@"photoOnFile:%i", photoOnFile);
     }
-    
     return photoOnFile;
-    
 }
 
 #pragma mark - Map View Controller Delegate
