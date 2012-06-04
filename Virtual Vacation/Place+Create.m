@@ -24,11 +24,9 @@
     if (!places || ([places count] > 1)) {
         NSLog(@"Error creating Place.");
     } else if (![places count]) {
-        place = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
+        place      = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = name;
-    } else {
-        place = [places lastObject];
-    }
+    } else place   = [places lastObject];
     
     return place;
 }

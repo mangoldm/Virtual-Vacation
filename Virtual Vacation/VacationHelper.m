@@ -16,8 +16,7 @@
 
 @synthesize document = _document;
 
-+ (void)openVacationWithName:(NSString *)vacationName
-                  usingBlock:(completion_block_t)completionBlock;
++ (void)openVacationWithName:(NSString *)vacationName usingBlock:(completion_block_t)completionBlock;
 {
     // Get documents directory and path.
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -32,10 +31,9 @@
     } else {
         
         // No match exists, so save the document to file.
-        [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating
-                  completionHandler:^(BOOL success) {
-                      if (!success) NSLog(@"Couldn't create document at %@", url);
-                  }];
+        [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (!success) NSLog(@"Couldn't create document at %@", url);
+        }];
     }
     completionBlock(vacationDocument);
 }

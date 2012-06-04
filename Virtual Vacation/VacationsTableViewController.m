@@ -39,43 +39,68 @@
 }
 
 // Populate photo table with test data -- I don't think I need this, as photos will already be available in the places, photos, and recents table view controllers.
-- (void)fetchFlickrDataIntoDocument:(UIManagedDocument *)document
-{
-    dispatch_queue_t fetchQ = dispatch_queue_create("Flickr fetcher", NULL);
-    dispatch_async(fetchQ, ^{
-        NSArray *photos = [FlickrFetcher recentGeoreferencedPhotos];
-        [document.managedObjectContext performBlock:^{
-            for (NSDictionary *flickrInfo in photos) {
-                [Photo photoWithFlickrInfo:flickrInfo inManagedObjectContext:document.managedObjectContext];
-            }
-        }];
-    });
-    dispatch_release(fetchQ);
-}
+//- (void)fetchFlickrDataIntoDocument:(UIManagedDocument *)document
+//{
+//    dispatch_queue_t fetchQ = dispatch_queue_create("Flickr fetcher", NULL);
+//    dispatch_async(fetchQ, ^{
+//        NSArray *photos = [FlickrFetcher recentGeoreferencedPhotos];
+//        [document.managedObjectContext performBlock:^{
+//            for (NSDictionary *flickrInfo in photos) {
+//                [Photo photoWithFlickrInfo:flickrInfo inManagedObjectContext:document.managedObjectContext];
+//            }
+//        }];
+//    });
+//    dispatch_release(fetchQ);
+//}
 
-- (void)useDocument
-{
-    NSLog(@"url:%@",[self.vacationDatabase.fileURL path]);
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.vacationDatabase.fileURL path]]) {
-        [self.vacationDatabase saveToURL:self.vacationDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            [self setupFetchedResultsController];
-            [self fetchFlickrDataIntoDocument:self.vacationDatabase];
-        }];
-    } else if (self.vacationDatabase.documentState == UIDocumentStateClosed) {
-        [self.vacationDatabase openWithCompletionHandler:^(BOOL success) {
-            [self setupFetchedResultsController];
-        }];
-    } else if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
-        [self setupFetchedResultsController];
-    }
-}
+//- (void)useDocument
+//{
+//    NSLog(@"url:%@",[self.vacationDatabase.fileURL path]);
+//    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.vacationDatabase.fileURL path]]) {
+//        [self.vacationDatabase saveToURL:self.vacationDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+//            [self setupFetchedResultsController];
+//            [self fetchFlickrDataIntoDocument:self.vacationDatabase];
+//        }];
+//    } else if (self.vacationDatabase.documentState == UIDocumentStateClosed) {
+//        [self.vacationDatabase openWithCompletionHandler:^(BOOL success) {
+//            [self setupFetchedResultsController];
+//        }];
+//    } else if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
+//        [self setupFetchedResultsController];
+//    }
+//}
 
-- (void)setVacationDatabase:(UIManagedDocument *)vacationDatabase
+//- (void)setVacationDatabase:(UIManagedDocument *)vacationDatabase
+//{
+//    if (_vacationDatabase != vacationDatabase) {
+//        _vacationDatabase  = vacationDatabase;
+//        [self useDocument];
+//    }
+//}
+
+// Returns an array of all the Vacations on file.
++ (NSArray *)vacationsOnFile
 {
-    if (_vacationDatabase != vacationDatabase) {
-        _vacationDatabase  = vacationDatabase;
-        [self useDocument];
+    // Identify the documents folder URL.
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSError *error             = nil;
+    NSURL *documentsURL        = [fileManager URLForDirectory:NSDocumentDirectory
+                                                     inDomain:NSUserDomainMask
+                                            appropriateForURL:nil
+                                                       create:NO
+                                                        error:&error];
+    if (documentsURL == nil) {
+        NSLog(@"Could not access documents directory\n%@", [error localizedDescription]);
     }
+    
+    // Populate the array with vacation filenames in the documents directory.
+    error              = nil;
+    NSArray *keys      = [NSArray arrayWithObjects:NSURLNameKey, NSURLTypeIdentifierKey, nil];
+    NSArray *vacations = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL 
+                                                       includingPropertiesForKeys:keys
+                                                                          options:0
+                                                                            error:&error];
+    return vacations;
 }
 
 - (void)viewWillAppear:(BOOL)animated
