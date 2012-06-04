@@ -26,7 +26,7 @@
     </entity>
     <elements>
         <element name="Photo" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="Place" positionX="162" positionY="-6" width="128" height="105"/>
+        <element name="Place" positionX="124" positionY="57" width="128" height="105"/>
         <element name="Tag" positionX="412" positionY="126" width="128" height="75"/>
         <element name="Vacation" positionX="-110" positionY="162" width="128" height="90"/>
     </elements>
