@@ -13,9 +13,9 @@
 // Returns a set of tags from a string of space-delimited tags, creating a new database entry for each individual tag.
 + (NSSet *)tagsFromString:(NSString *)tagsString forPhotoID:(NSString *)unique inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSMutableSet *tagSet = nil;
-    
     NSArray *photoTags = [tagsString componentsSeparatedByString:@" "];
+    NSMutableSet *tagSet = [[NSMutableSet alloc] initWithCapacity:[photoTags count]];
+    
     for (NSString *photoTag in photoTags) {
         Tag *tag = nil;
         
