@@ -10,9 +10,11 @@
 
 @implementation Tag (Create)
 
-// Returns a set of tags from a string of space-delimited tags, creating a new database entry for each new tag.
+// Returns a set of tags from a string of space-delimited tags, creating a new database entry for each individual tag.
 + (NSSet *)tagsFromString:(NSString *)tagsString forPhotoID:(NSString *)unique inManagedObjectContext:(NSManagedObjectContext *)context
 {
+    NSMutableSet *tagSet = nil;
+    
     NSArray *photoTags = [tagsString componentsSeparatedByString:@" "];
     for (NSString *photoTag in photoTags) {
         Tag *tag = nil;
@@ -34,12 +36,10 @@
         } else tag   = [fetchedTags lastObject];
         
         // Add the tag to the array.
-        [photoTags arrayByAddingObject:tag];
+        [tagSet addObject:tag];
     }
     
-    // Convert the tags array to a set then return the set.
-    NSSet *photoTagsSet = [NSSet setWithArray:photoTags];
-    return photoTagsSet;
+    return tagSet;
 }
 
 @end

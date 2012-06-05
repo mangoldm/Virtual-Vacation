@@ -42,11 +42,11 @@
         photo.imageURL   = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
         photo.whereTaken = [Place placeWithName:FLICKR_PHOTO_PLACE_NAME inManagedObjectContext:context];
         photo.taggedAs   = [Tag tagsFromString:tags forPhotoID:photo.unique inManagedObjectContext:context];
+        NSLog(@"Made it here.");
     } else
         
         // Retrieve the Photo if already in the database.
         photo = [matches lastObject];
-    
     return photo;
 }
 
