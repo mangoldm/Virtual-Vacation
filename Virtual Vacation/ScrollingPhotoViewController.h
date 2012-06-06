@@ -23,5 +23,5 @@
 - (IBAction)vacation:(UIBarButtonItem *)sender;
 - (IBAction)dismissPhoto:(UITapGestureRecognizer *)sender;
 
-@property (nonatomic, strong) id chosenPhoto;
+@property (nonatomic, strong) NSDictionary *chosenPhoto;
 @end

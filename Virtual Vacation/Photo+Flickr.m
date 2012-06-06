@@ -17,15 +17,16 @@
 // Creates a Core Data Photo Entity from Flickr information or retrieves a Photo if already in the database.
 + (Photo *)photoWithFlickrInfo:(NSDictionary *)flickrInfo inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    Photo *photo = nil;
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:context];
+    Photo *photo = [[Photo alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
     
-    // Create the fetch request.
+    // Build fetch request.
     NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.predicate                = [NSPredicate predicateWithFormat:@"unique = %@", [flickrInfo objectForKey:FLICKR_PHOTO_ID]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
     request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
     
-    // Execute the fetch request.
+    // Execute fetch request.
     NSError *error   = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
@@ -35,14 +36,15 @@
         
         // Construct the Photo from Flickr data.
         NSString *tags   = [flickrInfo objectForKey:FLICKR_TAGS];
+        NSString *place  = [flickrInfo objectForKey:FLICKR_PLACE_NAME];
+        NSLog(@"place:%@",place);
         photo            = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
         photo.unique     = [flickrInfo objectForKey:FLICKR_PHOTO_ID];
         photo.title      = [flickrInfo objectForKey:FLICKR_PHOTO_TITLE];
         photo.subtitle   = [flickrInfo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL   = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
-        photo.whereTaken = [Place placeWithName:FLICKR_PHOTO_PLACE_NAME inManagedObjectContext:context];
+        photo.whereTaken = [Place placeWithName:place inManagedObjectContext:context];
         photo.taggedAs   = [Tag tagsFromString:tags forPhotoID:photo.unique inManagedObjectContext:context];
-        NSLog(@"Made it here.");
     } else
         
         // Retrieve the Photo if already in the database.

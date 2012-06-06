@@ -13,17 +13,19 @@
 // Returns a set of tags from a string of space-delimited tags, creating a new database entry for each individual tag.
 + (NSSet *)tagsFromString:(NSString *)tagsString forPhotoID:(NSString *)unique inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSArray *photoTags = [tagsString componentsSeparatedByString:@" "];
+    NSArray *photoTags   = [tagsString componentsSeparatedByString:@" "];
     NSMutableSet *tagSet = [[NSMutableSet alloc] initWithCapacity:[photoTags count]];
     
     for (NSString *photoTag in photoTags) {
-        Tag *tag = nil;
+        
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:context];
+        Tag *tag                               = [[Tag alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
         
         // Build fetch request.
-        NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
-        request.predicate                = [NSPredicate predicateWithFormat:@"name = %@",photoTag];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-        request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
+        NSFetchRequest *request                = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
+        request.predicate                      = [NSPredicate predicateWithFormat:@"name = %@",photoTag];
+        NSSortDescriptor *sortDescriptor       = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        request.sortDescriptors                = [NSArray arrayWithObject:sortDescriptor];
         
         // Execute fetch request.
         NSError *error       = nil;

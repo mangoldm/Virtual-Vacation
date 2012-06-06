@@ -13,13 +13,14 @@
 
 + (Vacation *)vacationWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    Vacation *vacation               = nil;
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Vacation" inManagedObjectContext:context];
+    Vacation *vacation                     = [[Vacation alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
     
     // Build the fetch request.
-    NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
-    request.predicate                = [NSPredicate predicateWithFormat:@"name = %@",name];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
+    NSFetchRequest *request                = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
+    request.predicate                      = [NSPredicate predicateWithFormat:@"name = %@",name];
+    NSSortDescriptor *sortDescriptor       = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    request.sortDescriptors                = [NSArray arrayWithObject:sortDescriptor];
     
     // Execute the fetch request.
     NSError *error     = nil;

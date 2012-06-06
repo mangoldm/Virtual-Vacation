@@ -267,11 +267,12 @@
 // Returns YES if photo is stored in a virtual vacation.
 - (BOOL) photoIsOnVacation
 {
-    // Initialize local variables.
     __block BOOL photoOnFile = NO;
-    NSString *photoID        = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+    
+    // Build fetch request.
+    NSString *currentPhotoID = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
     NSFetchRequest *request  = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    request.predicate        = [NSPredicate predicateWithFormat:@"unique = %@", photoID];
+    request.predicate        = [NSPredicate predicateWithFormat:@"unique = %@", currentPhotoID];
     
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -289,12 +290,13 @@
                                                               includingPropertiesForKeys:keys
                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                    error:nil];
-        if (!vacationURLs) { // No virtual vacations
-            photoOnFile = NO;
-        } else { // Search each virtual vacation for the photo.
+        if (!vacationURLs) photoOnFile = NO;
+        else {
+            
+            // Search each virtual vacation for the photo.
             for (NSURL *vacationURL in vacationURLs) {
-                NSError *errorForName = nil;
-                NSString *vacationName;
+                NSError *errorForName  = nil;
+                NSString *vacationName = nil;
                 [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
                 self.vacationDocumentName = vacationName;
                 [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
@@ -303,13 +305,15 @@
                     NSError *error              = nil;
                     NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
                     NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
+                    NSLog(@"[checkPhotos count]:%i",[checkPhotos count]);
                     Photo *checkPhoto           = [checkPhotos lastObject];
-                    NSString *currentPhotoID    = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+                    NSLog(@"checkPhoto.unique:%@ currentPhotoID:%@", checkPhoto.unique, currentPhotoID);
                     if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
                 }];
             }
         }
     }
+    NSLog(@"photoOnFile:%i", photoOnFile);
     return photoOnFile;
 }
 
