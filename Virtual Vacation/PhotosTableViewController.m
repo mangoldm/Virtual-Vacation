@@ -108,21 +108,6 @@
     }
 }
 
-- (void)prepareForSegue2:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] hasPrefix:@"Map Photos"] || [[segue identifier] hasPrefix:@"Map Recent Photos"]) {
-        MapViewController *mapVC = segue.destinationViewController;
-        mapVC.annotations = [self mapAnnotations];
-        mapVC.delegate = self;
-        mapVC.title = self.title;
-    } else {
-        if ([segue.identifier hasPrefix: @"Show Image for Photo Annotation"] ||
-            [segue.identifier hasPrefix: @"Show Image from Table"]) {
-            [segue.destinationViewController viewController:self chosePhoto:self.chosenPhoto];
-        }
-    }
-}
-
 #pragma mark - TableView Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

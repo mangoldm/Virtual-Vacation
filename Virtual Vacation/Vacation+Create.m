@@ -29,10 +29,11 @@
     if (!vacations || ([vacations count] > 1)) {
         NSLog(@"Error finding vacation.");
     } else if (![vacations count]) {
-        vacation      = [NSEntityDescription insertNewObjectForEntityForName:@"Vacation" inManagedObjectContext:context];
         vacation.name = name;
+        NSLog(@"Vacation created:%@",vacation.name);
     } else {
         vacation = [vacations lastObject];
+        NSLog(@"Vacation retrieved:%@",vacation.name);
     }
     
     return vacation;

@@ -13,6 +13,7 @@
 // Creates or fetches a Core Data Place entity.
 + (Place *)placeWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
+    if (!name) name = @"Place Unknown";
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:context];
     Place *place                           = [[Place alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
     
@@ -29,11 +30,8 @@
     if (!places) {
         NSLog(@"Error creating Place -- nil.");
     } else if ([places count] > 1) {
-        Place *place1 = [places objectAtIndex:0];
-        Place *place2 = [places objectAtIndex:1];
-        NSLog(@"Error creating Place -- places1:%@ places2:%@",place1.name, place2.name);
+        NSLog(@"Error creating Place -- duplicate entries.");
     } else if ([places count] == 0) {
-        place      = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = name;
         NSLog(@"Created place %@",place.name);
     } else {

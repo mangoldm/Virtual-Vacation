@@ -36,8 +36,7 @@
 - (void)addPhotoToVacation:(NSString *)vacationName inDocument:(UIManagedDocument *)vacationDocument
 {
     NSManagedObjectContext *context = vacationDocument.managedObjectContext;
-    [Photo photoWithFlickrInfo:self.chosenPhoto inManagedObjectContext:context];
-    
+    [Photo photoWithFlickrInfo:self.chosenPhoto onVacation:vacationName inManagedObjectContext:context];
 }
 
 - (void)removePhoto:(Photo *) fromVacation:(UIManagedDocument *)vacationDocument
@@ -305,9 +304,7 @@
                     NSError *error              = nil;
                     NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
                     NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
-                    NSLog(@"[checkPhotos count]:%i",[checkPhotos count]);
                     Photo *checkPhoto           = [checkPhotos lastObject];
-                    NSLog(@"checkPhoto.unique:%@ currentPhotoID:%@", checkPhoto.unique, currentPhotoID);
                     if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
                 }];
             }
