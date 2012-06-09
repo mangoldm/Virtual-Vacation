@@ -25,16 +25,12 @@
     // Execute the fetch request.
     NSError *error     = nil;
     NSArray *vacations = [context executeFetchRequest:request error:&error];
-    NSLog(@"[vacations count]:%i",[vacations count]);
-    NSLog(@"context:%@",context);
     if (!vacations || ([vacations count] > 1)) {
         NSLog(@"Error finding vacation.");
     } else if (![vacations count]) {
         vacation.name = name;
-        NSLog(@"Vacation created:%@",vacation.name);
     } else {
         vacation = [vacations lastObject];
-        NSLog(@"Vacation retrieved:%@",vacation.name);
     }
     
     return vacation;

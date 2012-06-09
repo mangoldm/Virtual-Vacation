@@ -40,12 +40,11 @@
         
         // Construct the Photo from Flickr data.
         NSString *tags   = [flickrInfo objectForKey:FLICKR_TAGS];
-        NSString *place  = [flickrInfo objectForKey:FLICKR_PLACE_NAME];
+        NSString *place  = [flickrInfo objectForKey:FLICKR_PHOTO_PLACE_NAME];
         photo            = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
         photo.onVacation = [Vacation vacationWithName:vacationName inManagedObjectContext:context];
         photo.unique     = [flickrInfo objectForKey:FLICKR_PHOTO_ID];
         photo.title      = [flickrInfo objectForKey:FLICKR_PHOTO_TITLE];
-        NSLog(@"photo.title:%@",photo.title);
         photo.subtitle   = [flickrInfo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL   = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
         photo.whereTaken = [Place placeWithName:place inManagedObjectContext:context];
