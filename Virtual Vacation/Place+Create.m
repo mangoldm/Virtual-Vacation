@@ -13,9 +13,7 @@
 // Creates or fetches a Core Data Place entity.
 + (Place *)placeWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    if (!name) name = @"Place Unknown";
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:context];
-    Place *place                           = [[Place alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
+    Place *place                           = nil;
     
     // Build fetch request.
     NSFetchRequest *request                = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
@@ -27,16 +25,13 @@
     NSError *error  = nil;
     NSArray *places = [context executeFetchRequest:request error:&error];
     
-    if (!places) {
-        NSLog(@"Error creating Place -- nil.");
-    } else if ([places count] > 1) {
+    if ([places count] > 1) {
         NSLog(@"Error creating Place -- duplicate entries.");
     } else if ([places count] == 0) {
+        place      = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = name;
-        NSLog(@"Created place %@",place.name);
     } else {
         place   = [places lastObject];
-        NSLog(@"Retrieved place %@",place.name);
     }
     
     return place;
