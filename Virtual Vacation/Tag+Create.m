@@ -16,7 +16,8 @@
     NSArray *photoTags   = [tagsString componentsSeparatedByString:@" "];
     NSMutableSet *tagSet = [[NSMutableSet alloc] initWithCapacity:[photoTags count]];
     for (NSString *photoTag in photoTags) {
-        if (photoTag) {
+        if (photoTag && !([photoTag isEqualToString:@" "]) && !([photoTag isEqualToString:@""])) {
+            NSLog(@"photoTag:%@",photoTag);
             Tag *tag                               = nil;
             
             // Build fetch request.

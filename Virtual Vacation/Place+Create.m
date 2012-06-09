@@ -13,13 +13,16 @@
 // Creates or fetches a Core Data Place entity.
 + (Place *)placeWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    Place *place                           = nil;
+    if ([name isEqualToString:@" "]) {
+        name = @"Place Unknown";
+    }
+    Place *place                     = nil;
     
     // Build fetch request.
-    NSFetchRequest *request                = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
-    request.predicate                      = [NSPredicate predicateWithFormat:@"name = %@",name];
-    NSSortDescriptor *sortDescriptor       = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    request.sortDescriptors                = [NSArray arrayWithObject:sortDescriptor];
+    NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
+    request.predicate                = [NSPredicate predicateWithFormat:@"name = %@",name];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
     
     // Execute fetch requesst.
     NSError *error  = nil;
