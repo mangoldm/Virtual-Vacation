@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) NSData *photoData;
-@property (weak, nonatomic) NSString *vacationDocumentName;
+@property (weak, nonatomic) UIManagedDocument *vacationDocument;
 @end
 
 @implementation ScrollingPhotoViewController
@@ -29,7 +29,7 @@
 @synthesize chosenPhoto = _chosenPhoto;
 @synthesize spinner     = _spinner;
 @synthesize photoData   = _photoData;
-@synthesize vacationDocumentName = _vacationDocumentName;
+@synthesize vacationDocument = _vacationDocument;
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
 
@@ -37,6 +37,12 @@
 {
     NSManagedObjectContext *context = vacationDocument.managedObjectContext;
     [Photo photoWithFlickrInfo:self.chosenPhoto onVacation:vacationName inManagedObjectContext:context];
+    [vacationDocument saveToURL:vacationDocument.presentedItemURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success)
+     { 
+         if (!success) {
+             NSLog(@"Error saving document.");
+         }
+     }];
 }
 
 - (void)removePhoto:(Photo *) fromVacation:(UIManagedDocument *)vacationDocument
@@ -47,11 +53,18 @@
 // Clicked when user wants to add or remove the photo from a virtual vacation.
 - (IBAction)vacation:(UIBarButtonItem *)sender
 {
-    NSString *vacationName = @"My Vacation";
+    NSString *vacationName = @"My Vacation"; // Assume only one vacation.
     if ([sender.title isEqualToString:TITLE_ADD_TO_VACATION]) {
-        [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
-            [self addPhotoToVacation:vacationName inDocument:vacationDocument];
-        }];
+        if (!self.vacationDocument) {
+            NSLog(@"Creating new vacationDocument instance.");
+            [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
+                self.vacationDocument = vacationDocument;
+                [self addPhotoToVacation:vacationName inDocument:vacationDocument];
+            }];
+        } else {
+            NSLog(@"Using existing vacationDocument instance.");
+            [self addPhotoToVacation:vacationName inDocument:self.vacationDocument];
+        }
     } else {
         NSLog(@"...Removing");
     }
@@ -297,20 +310,23 @@
                 NSError *errorForName  = nil;
                 NSString *vacationName = nil;
                 [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
-                self.vacationDocumentName = vacationName;
                 [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
                     
                     // search for photo
                     NSError *error              = nil;
                     NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
                     NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
-                    Photo *checkPhoto           = [checkPhotos lastObject];
-                    if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
+                    if (error) {
+                        NSLog(@"Error searching for photo:%@",error);
+                    } else {
+                        Photo *checkPhoto           = [checkPhotos lastObject];
+                        if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
+                    }
+                    
                 }];
             }
         }
     }
-    NSLog(@"photoOnFile:%i", photoOnFile);
     return photoOnFile;
 }
 

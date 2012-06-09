@@ -9,12 +9,9 @@
 #import "VacationHelper.h"
 
 @interface VacationHelper ()
-@property UIManagedDocument *document;
 @end
 
 @implementation VacationHelper
-
-@synthesize document = _document;
 
 + (void)openVacationWithName:(NSString *)vacationName usingBlock:(completion_block_t)completionBlock;
 {

@@ -20,8 +20,9 @@
                     onVacation:(NSString *)vacationName
         inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:context];
-    Photo *photo = [[Photo alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
+    Photo *photo = nil;
+    //    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:context];
+    //    Photo *photo = [[Photo alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
     
     // Build fetch request.
     NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
@@ -44,15 +45,16 @@
         photo.onVacation = [Vacation vacationWithName:vacationName inManagedObjectContext:context];
         photo.unique     = [flickrInfo objectForKey:FLICKR_PHOTO_ID];
         photo.title      = [flickrInfo objectForKey:FLICKR_PHOTO_TITLE];
+        NSLog(@"photo.title:%@",photo.title);
         photo.subtitle   = [flickrInfo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL   = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
         photo.whereTaken = [Place placeWithName:place inManagedObjectContext:context];
         photo.taggedAs   = [Tag tagsFromString:tags forPhotoID:photo.unique inManagedObjectContext:context];
-    } else
+    } else {
         
         // Retrieve the Photo if already in the database.
         photo = [matches lastObject];
+    }
     return photo;
 }
-
 @end
