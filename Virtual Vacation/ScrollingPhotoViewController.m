@@ -56,13 +56,11 @@
     NSString *vacationName = @"My Vacation"; // Assume only one vacation.
     if ([sender.title isEqualToString:TITLE_ADD_TO_VACATION]) {
         if (!self.vacationDocument) {
-            NSLog(@"Creating new vacationDocument instance.");
             [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
                 self.vacationDocument = vacationDocument;
                 [self addPhotoToVacation:vacationName inDocument:vacationDocument];
             }];
         } else {
-            NSLog(@"Using existing vacationDocument instance.");
             [self addPhotoToVacation:vacationName inDocument:self.vacationDocument];
         }
     } else {

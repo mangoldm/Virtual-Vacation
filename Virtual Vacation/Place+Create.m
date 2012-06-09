@@ -33,6 +33,7 @@
     } else if ([places count] == 0) {
         place      = [NSEntityDescription insertNewObjectForEntityForName:@"Place" inManagedObjectContext:context];
         place.name = name;
+        place.addedDate = [NSDate date];
     } else {
         place   = [places lastObject];
     }
