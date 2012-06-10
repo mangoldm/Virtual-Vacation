@@ -13,14 +13,13 @@
 
 + (Vacation *)vacationWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Vacation" inManagedObjectContext:context];
-    Vacation *vacation                     = [[Vacation alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
-    
+    Vacation *vacation               = nil;
+    NSLog(@"name:%@",name);
     // Build the fetch request.
-    NSFetchRequest *request                = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
-    request.predicate                      = [NSPredicate predicateWithFormat:@"name = %@",name];
-    NSSortDescriptor *sortDescriptor       = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-    request.sortDescriptors                = [NSArray arrayWithObject:sortDescriptor];
+    NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
+    request.predicate                = [NSPredicate predicateWithFormat:@"name = %@",name];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
     
     // Execute the fetch request.
     NSError *error     = nil;
@@ -28,8 +27,11 @@
     if (!vacations || ([vacations count] > 1)) {
         NSLog(@"Error finding vacation.");
     } else if (![vacations count]) {
+        NSLog(@"Creating vacation.");
+        vacation      = [NSEntityDescription insertNewObjectForEntityForName:@"Vacation" inManagedObjectContext:context];
         vacation.name = name;
     } else {
+        NSLog(@"Retrieving vacation.");
         vacation = [vacations lastObject];
     }
     

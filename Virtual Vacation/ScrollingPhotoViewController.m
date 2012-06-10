@@ -38,10 +38,19 @@
     NSManagedObjectContext *context = vacationDocument.managedObjectContext;
     [Photo photoWithFlickrInfo:self.chosenPhoto onVacation:vacationName inManagedObjectContext:context];
     [vacationDocument saveToURL:vacationDocument.presentedItemURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success)
-     { 
+     {
+         NSString *errorMessage;
          if (!success) {
-             NSLog(@"Error saving document.");
+             errorMessage = @"Unsuccessful";
+         } else {
+             errorMessage = @"Successful";
          }
+         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Photo Saved"
+                                                           message:errorMessage
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+         [message show];
      }];
 }
 
