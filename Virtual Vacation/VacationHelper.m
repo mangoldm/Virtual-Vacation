@@ -24,15 +24,16 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         [vacationDocument openWithCompletionHandler:^(BOOL success) {
             if (!success) NSLog (@"Couldn't open document at %@", url);
+            else completionBlock(vacationDocument);
         }];
     } else {
         
         // No match exists, so save the document to file.
         [vacationDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             if (!success) NSLog(@"Couldn't create document at %@", url);
+            else completionBlock(vacationDocument);
         }];
     }
-    completionBlock(vacationDocument);
 }
 
 @end

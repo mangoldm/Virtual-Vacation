@@ -15,8 +15,8 @@
 #import "VacationHelper.h"
 
 #define MAXIMUM_CACHE_SIZE 10000000 // 10MB
-#define TITLE_ADD_TO_VACATION @"+"
-#define TITLE_REMOVE_FROM_VACATION @"-"
+#define TITLE_ADD_TO_VACATION @"Visit"
+#define TITLE_REMOVE_FROM_VACATION @"Unvisit"
 
 @interface ScrollingPhotoViewController : UIViewController <UINavigationBarDelegate, PhotosTableViewControllerDelegate>
 

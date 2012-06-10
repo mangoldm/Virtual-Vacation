@@ -330,11 +330,10 @@
                         NSLog(@"Error searching for photo:%@",error);
                     } else {
                         Photo *checkPhoto = [checkPhotos lastObject];
-                        NSLog(@"[checkPhotos count]%@",[checkPhotos count]);
                         if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
                     }
-                    
                 }];
+                if (photoOnFile) break;
             }
         }
     }
