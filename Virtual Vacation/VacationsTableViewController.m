@@ -11,7 +11,6 @@
 #import "FlickrFetcher.h"
 #import "Tag.h"
 #import "Place.h"
-#import "Vacation.h"
 
 @interface VacationsTableViewController ()
 
@@ -112,10 +111,10 @@
 {
     static NSString *CellIdentifier = @"Vacation Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    Vacation *vacation = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = vacation.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [vacation.photos count]];
+//    
+//    Vacation *vacation = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    cell.textLabel.text = vacation.name;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [vacation.photos count]];
     
     return cell;
 }

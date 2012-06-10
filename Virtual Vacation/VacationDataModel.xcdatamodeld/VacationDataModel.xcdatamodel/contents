@@ -5,7 +5,6 @@
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unique" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="onVacation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Vacation" inverseName="photos" inverseEntity="Vacation" syncable="YES"/>
         <relationship name="taggedAs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="taggedIn" inverseEntity="Tag" syncable="YES"/>
         <relationship name="whereTaken" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="seenIn" inverseEntity="Place" syncable="YES"/>
     </entity>
@@ -13,21 +12,14 @@
         <attribute name="addedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="seenIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="whereTaken" inverseEntity="Photo" syncable="YES"/>
-        <relationship name="visitedOnVacation" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Vacation" inverseName="itinerary" inverseEntity="Vacation" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="taggedIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="taggedAs" inverseEntity="Photo" syncable="YES"/>
     </entity>
-    <entity name="Vacation" representedClassName="Vacation" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="itinerary" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="visitedOnVacation" inverseEntity="Place" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="onVacation" inverseEntity="Photo" syncable="YES"/>
-    </entity>
     <elements>
         <element name="Photo" positionX="-45" positionY="153" width="128" height="150"/>
         <element name="Place" positionX="-9" positionY="-24" width="128" height="105"/>
         <element name="Tag" positionX="196" positionY="267" width="128" height="75"/>
-        <element name="Vacation" positionX="196" positionY="108" width="128" height="90"/>
     </elements>
 </model>

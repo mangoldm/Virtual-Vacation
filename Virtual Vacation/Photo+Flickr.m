@@ -11,7 +11,6 @@
 #import "FlickrFetcher.h"
 #import "Place+Create.h"
 #import "Tag+Create.h"
-#import "Vacation+Create.h"
 
 @implementation Photo (Flickr)
 
@@ -51,8 +50,6 @@
         
         NSString *place  = [flickrInfo objectForKey:FLICKR_PHOTO_PLACE_NAME];
         photo.whereTaken = [Place       placeWithName:place inManagedObjectContext:context];
-        
-        photo.onVacation = [Vacation vacationWithName:vacationName inManagedObjectContext:context];
     } else {
         
         // Retrieve the Photo if already in the database.

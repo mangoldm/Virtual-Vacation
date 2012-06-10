@@ -13,7 +13,6 @@
 #import "MapViewController.h"
 #import "Photo+Flickr.h"
 #import "VacationHelper.h"
-#import "Vacation+Create.h"
 
 @interface ScrollingPhotoViewController () <UIScrollViewDelegate, MapViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -326,7 +325,7 @@
                     request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
                     
                     // Execute fetch request.
-                    NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
+                    NSArray *checkPhotos = [moc executeFetchRequest:request error:&error];
                     if (error) {
                         NSLog(@"Error searching for photo:%@",error);
                     } else {

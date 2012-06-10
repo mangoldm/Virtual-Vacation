@@ -18,11 +18,9 @@
 		6D2B0EDD156972F300019A17 /* PhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928A15696D02008DDE82 /* PhotosTableViewController.m */; };
 		6D2B0EDE156972F600019A17 /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928C15696D02008DDE82 /* PlacesTableViewController.m */; };
 		6D2B0EDF156972F900019A17 /* ScrollingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */; };
-		6D686DA41573F89900139912 /* Vacation+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D686DA31573F89900139912 /* Vacation+Create.m */; };
-		6DA40F9E157DC26900670E58 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA40F9D157DC26900670E58 /* Place.m */; };
-		6DA40FA2157DC26900670E58 /* Vacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA40FA1157DC26900670E58 /* Vacation.m */; };
-		6DA40FA5157DC26900670E58 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA40FA4157DC26900670E58 /* Tag.m */; };
-		6DA40FA8157DC26900670E58 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA40FA7157DC26900670E58 /* Photo.m */; };
+		6D7E85DF1584D12E0014644C /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E85DE1584D12E0014644C /* Photo.m */; };
+		6D7E85E21584D12E0014644C /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E85E11584D12E0014644C /* Place.m */; };
+		6D7E85E51584D12E0014644C /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E85E41584D12E0014644C /* Tag.m */; };
 		6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD96296156978E1000CDC6F /* VacationsTableViewController.m */; };
 		6DD9629A15697A74000CDC6F /* briefcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9629915697A74000CDC6F /* briefcase.png */; };
 		6DDE9BDB156C787800A65A0F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDE9BDA156C787800A65A0F /* CoreData.framework */; };
@@ -56,16 +54,12 @@
 		6D0755A9156C548900D2247D /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		6D0755AA156C548900D2247D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationDataModel.xcdatamodel; sourceTree = "<group>"; };
-		6D686DA21573F89900139912 /* Vacation+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Vacation+Create.h"; sourceTree = "<group>"; };
-		6D686DA31573F89900139912 /* Vacation+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Vacation+Create.m"; sourceTree = "<group>"; };
-		6DA40F9C157DC26900670E58 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		6DA40F9D157DC26900670E58 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		6DA40FA0157DC26900670E58 /* Vacation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vacation.h; sourceTree = "<group>"; };
-		6DA40FA1157DC26900670E58 /* Vacation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vacation.m; sourceTree = "<group>"; };
-		6DA40FA3157DC26900670E58 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6DA40FA4157DC26900670E58 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6DA40FA6157DC26900670E58 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		6DA40FA7157DC26900670E58 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		6D7E85DD1584D12E0014644C /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
+		6D7E85DE1584D12E0014644C /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
+		6D7E85E01584D12E0014644C /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Place.h; path = ../Place.h; sourceTree = "<group>"; };
+		6D7E85E11584D12E0014644C /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Place.m; path = ../Place.m; sourceTree = "<group>"; };
+		6D7E85E31584D12E0014644C /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = ../Tag.h; sourceTree = "<group>"; };
+		6D7E85E41584D12E0014644C /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = ../Tag.m; sourceTree = "<group>"; };
 		6DD96295156978E1000CDC6F /* VacationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationsTableViewController.h; sourceTree = "<group>"; };
 		6DD96296156978E1000CDC6F /* VacationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationsTableViewController.m; sourceTree = "<group>"; };
 		6DD9629915697A74000CDC6F /* briefcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = briefcase.png; sourceTree = "<group>"; };
@@ -136,14 +130,12 @@
 		6DDE9BD9156C77FF00A65A0F /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				6DA40F9C157DC26900670E58 /* Place.h */,
-				6DA40FA6157DC26900670E58 /* Photo.h */,
-				6DA40FA7157DC26900670E58 /* Photo.m */,
-				6DA40FA3157DC26900670E58 /* Tag.h */,
-				6DA40FA4157DC26900670E58 /* Tag.m */,
-				6DA40FA0157DC26900670E58 /* Vacation.h */,
-				6DA40FA1157DC26900670E58 /* Vacation.m */,
-				6DA40F9D157DC26900670E58 /* Place.m */,
+				6D7E85E31584D12E0014644C /* Tag.h */,
+				6D7E85E41584D12E0014644C /* Tag.m */,
+				6D7E85E01584D12E0014644C /* Place.h */,
+				6D7E85E11584D12E0014644C /* Place.m */,
+				6D7E85DD1584D12E0014644C /* Photo.h */,
+				6D7E85DE1584D12E0014644C /* Photo.m */,
 				6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -212,8 +204,6 @@
 				6DDE9BE6156F01F200A65A0F /* Tag+Create.m */,
 				6D0755A6156C46CC00D2247D /* TagsViewController.h */,
 				6D0755A7156C46CC00D2247D /* TagsViewController.m */,
-				6D686DA21573F89900139912 /* Vacation+Create.h */,
-				6D686DA31573F89900139912 /* Vacation+Create.m */,
 				6DDE9BE815712FAF00A65A0F /* VacationHelper.h */,
 				6DDE9BE915712FAF00A65A0F /* VacationHelper.m */,
 				6DD96295156978E1000CDC6F /* VacationsTableViewController.h */,
@@ -341,11 +331,9 @@
 				6DDE9BE4156EF7C400A65A0F /* Place+Create.m in Sources */,
 				6DDE9BE7156F01F200A65A0F /* Tag+Create.m in Sources */,
 				6DDE9BEA15712FAF00A65A0F /* VacationHelper.m in Sources */,
-				6D686DA41573F89900139912 /* Vacation+Create.m in Sources */,
-				6DA40F9E157DC26900670E58 /* Place.m in Sources */,
-				6DA40FA2157DC26900670E58 /* Vacation.m in Sources */,
-				6DA40FA5157DC26900670E58 /* Tag.m in Sources */,
-				6DA40FA8157DC26900670E58 /* Photo.m in Sources */,
+				6D7E85DF1584D12E0014644C /* Photo.m in Sources */,
+				6D7E85E21584D12E0014644C /* Place.m in Sources */,
+				6D7E85E51584D12E0014644C /* Tag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
