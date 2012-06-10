@@ -39,16 +39,20 @@
     } else if ([matches count] == 0) {
         
         // Construct the Photo from Flickr data.
-        NSString *tags   = [flickrInfo objectForKey:FLICKR_TAGS];
-        NSString *place  = [flickrInfo objectForKey:FLICKR_PHOTO_PLACE_NAME];
         photo            = [NSEntityDescription insertNewObjectForEntityForName:@"Photo" inManagedObjectContext:context];
-        photo.onVacation = [Vacation vacationWithName:vacationName inManagedObjectContext:context];
+        
         photo.unique     = [flickrInfo objectForKey:FLICKR_PHOTO_ID];
         photo.title      = [flickrInfo objectForKey:FLICKR_PHOTO_TITLE];
         photo.subtitle   = [flickrInfo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
         photo.imageURL   = [[FlickrFetcher urlForPhoto:flickrInfo format:FlickrPhotoFormatLarge] absoluteString];
-        photo.whereTaken = [Place placeWithName:place inManagedObjectContext:context];
-        photo.taggedAs   = [Tag tagsFromString:tags forPhotoID:photo.unique inManagedObjectContext:context];
+        
+        NSString *tags   = [flickrInfo objectForKey:FLICKR_TAGS];
+        photo.taggedAs   = [Tag        tagsFromString:tags forPhotoID:photo.unique inManagedObjectContext:context];
+        
+        NSString *place  = [flickrInfo objectForKey:FLICKR_PHOTO_PLACE_NAME];
+        photo.whereTaken = [Place       placeWithName:place inManagedObjectContext:context];
+        
+        photo.onVacation = [Vacation vacationWithName:vacationName inManagedObjectContext:context];
     } else {
         
         // Retrieve the Photo if already in the database.

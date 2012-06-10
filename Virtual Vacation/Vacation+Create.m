@@ -24,9 +24,12 @@
     // Execute the fetch request.
     NSError *error     = nil;
     NSArray *vacations = [context executeFetchRequest:request error:&error];
-    if (!vacations || ([vacations count] > 1)) {
-        NSLog(@"Error finding vacation.");
-    } else if (![vacations count]) {
+    
+    if (!vacations){
+        NSLog(@"Error finding vacation - nil.");
+    } else if ([vacations count] > 1) {
+        NSLog(@"Error finding vacation - duplicate.");
+    } else if ([vacations count] == 0) {
         NSLog(@"Creating vacation.");
         vacation      = [NSEntityDescription insertNewObjectForEntityForName:@"Vacation" inManagedObjectContext:context];
         vacation.name = name;
