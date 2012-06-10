@@ -288,11 +288,6 @@
 {
     __block BOOL photoOnFile = NO;
     
-    // Build fetch request.
-    NSString *currentPhotoID = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
-    NSFetchRequest *request  = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    request.predicate        = [NSPredicate predicateWithFormat:@"unique = %@", currentPhotoID];
-    
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSError *errorForURLs      = nil;
@@ -304,6 +299,8 @@
     if (documentsURL == nil) {
         NSLog(@"Could not access documents directory\n%@", [errorForURLs localizedDescription]);
     } else {
+        
+        // Retrieve the vacation stores on file.
         NSArray *keys = [NSArray arrayWithObjects:NSURLLocalizedNameKey, nil];
         NSArray *vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
                                                               includingPropertiesForKeys:keys
@@ -318,15 +315,23 @@
                 NSString *vacationName = nil;
                 [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
                 [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
-                    
-                    // search for photo
                     NSError *error              = nil;
                     NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+                    
+                    // Build fetch request.
+                    NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+                    NSString *currentPhotoID         = [self.chosenPhoto objectForKey:FLICKR_PHOTO_ID];
+                    request.predicate                = [NSPredicate predicateWithFormat:@"unique = %@", currentPhotoID];
+                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"unique" ascending:YES];
+                    request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
+                    
+                    // Execute fetch request.
                     NSArray *checkPhotos        = [moc executeFetchRequest:request error:&error];
                     if (error) {
                         NSLog(@"Error searching for photo:%@",error);
                     } else {
-                        Photo *checkPhoto           = [checkPhotos lastObject];
+                        Photo *checkPhoto = [checkPhotos lastObject];
+                        NSLog(@"[checkPhotos count]%@",[checkPhotos count]);
                         if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
                     }
                     

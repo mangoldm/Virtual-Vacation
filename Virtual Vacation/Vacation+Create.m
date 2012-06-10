@@ -14,7 +14,7 @@
 + (Vacation *)vacationWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Vacation *vacation               = nil;
-    NSLog(@"name:%@",name);
+    
     // Build the fetch request.
     NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
     request.predicate                = [NSPredicate predicateWithFormat:@"name = %@",name];
@@ -30,11 +30,9 @@
     } else if ([vacations count] > 1) {
         NSLog(@"Error finding vacation - duplicate.");
     } else if ([vacations count] == 0) {
-        NSLog(@"Creating vacation.");
         vacation      = [NSEntityDescription insertNewObjectForEntityForName:@"Vacation" inManagedObjectContext:context];
         vacation.name = name;
     } else {
-        NSLog(@"Retrieving vacation.");
         vacation = [vacations lastObject];
     }
     
