@@ -221,7 +221,6 @@
     
     // Is this photo in the Vacations database?
     [self checkIfPhotoIsOnVacationAndDo:^(BOOL photoIsOnVacation) {
-        NSLog(@"Called, photoIsOnVacation:%i",photoIsOnVacation);
         if (photoIsOnVacation) {
             self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
         } else {
@@ -332,14 +331,14 @@
                         NSLog(@"Error searching for photo:%@",error);
                     } else {
                         Photo *checkPhoto = [checkPhotos lastObject];
-                        if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoIsOnVacation = YES;
+                        if ([checkPhoto.unique isEqualToString:currentPhotoID]) {
+                            photoIsOnVacation = YES;
+                            completionBlock(photoIsOnVacation);
+                        }
                     }
-                    NSLog(@"inntermost, photoIsOnVacation:%i",photoIsOnVacation);
                 }];
-                NSLog(@"Inside, photoIsOnVacation:%i",photoIsOnVacation);
                 if (photoIsOnVacation) break;
             }
-            NSLog(@"Outside, photoIsOnVacation:%i",photoIsOnVacation);
             completionBlock(photoIsOnVacation);
         }
     }
