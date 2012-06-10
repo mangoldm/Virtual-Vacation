@@ -220,11 +220,14 @@
     NSString *photoID = [photo objectForKey:FLICKR_PHOTO_ID];
     
     // Is this photo in the Vacations database?
-    if ([self photoIsOnVacation]) {
-        self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
-    } else {
-        self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
-    }
+    [self checkIfPhotoIsOnVacationAndDo:^(BOOL photoIsOnVacation) {
+        NSLog(@"Called, photoIsOnVacation:%i",photoIsOnVacation);
+        if (photoIsOnVacation) {
+            self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
+        } else {
+            self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
+        }
+    }];
     
     dispatch_queue_t photoQueue = dispatch_queue_create("photo downloader", NULL);
     dispatch_async(photoQueue, ^{
@@ -282,10 +285,9 @@
     dispatch_release(photoQueue);
 }
 
-// Returns YES if photo is stored in a virtual vacation.
-- (BOOL) photoIsOnVacation
+- (void)checkIfPhotoIsOnVacationAndDo:(void(^)(BOOL photoIsOnVacation))completionBlock
 {
-    __block BOOL photoOnFile = NO;
+    __block BOOL photoIsOnVacation = NO;
     
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -305,7 +307,7 @@
                                                               includingPropertiesForKeys:keys
                                                                                  options:NSDirectoryEnumerationSkipsHiddenFiles
                                                                                    error:nil];
-        if (!vacationURLs) photoOnFile = NO;
+        if (!vacationURLs) photoIsOnVacation = NO;
         else {
             
             // Search each virtual vacation for the photo.
@@ -330,14 +332,17 @@
                         NSLog(@"Error searching for photo:%@",error);
                     } else {
                         Photo *checkPhoto = [checkPhotos lastObject];
-                        if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoOnFile = YES;
+                        if ([checkPhoto.unique isEqualToString:currentPhotoID]) photoIsOnVacation = YES;
                     }
+                    NSLog(@"inntermost, photoIsOnVacation:%i",photoIsOnVacation);
                 }];
-                if (photoOnFile) break;
+                NSLog(@"Inside, photoIsOnVacation:%i",photoIsOnVacation);
+                if (photoIsOnVacation) break;
             }
+            NSLog(@"Outside, photoIsOnVacation:%i",photoIsOnVacation);
+            completionBlock(photoIsOnVacation);
         }
     }
-    return photoOnFile;
 }
 
 #pragma mark - Map View Controller Delegate
