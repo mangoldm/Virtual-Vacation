@@ -14,14 +14,12 @@
 
 @implementation Photo (Flickr)
 
-// Creates a Core Data Photo Entity from Flickr information or retrieves a Photo if already in the database.
-+ (Photo *)photoWithFlickrInfo:(NSDictionary *)flickrInfo
-                    onVacation:(NSString *)vacationName
+// Creates a Core Data Photo Entity from Flickr information.
++ (void)addPhotoWithFlickrInfo:(NSDictionary *)flickrInfo
+                    toVacation:(NSString *)vacationName
         inManagedObjectContext:(NSManagedObjectContext *)context
 {
     Photo *photo = nil;
-    //    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:context];
-    //    Photo *photo = [[Photo alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:context];
     
     // Build fetch request.
     NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
@@ -51,10 +49,37 @@
         NSString *place  = [flickrInfo objectForKey:FLICKR_PHOTO_PLACE_NAME];
         photo.whereTaken = [Place       placeWithName:place inManagedObjectContext:context];
     } else {
-        
-        // Retrieve the Photo if already in the database.
-        photo = [matches lastObject];
+        NSLog(@"Error: photo already on file.");
     }
-    return photo;
 }
+
+// Deletes a Core Data Photo Entity.
++ (void)deletePhotoWithFlickrInfo:(NSDictionary *)flickrInfo
+                     fromVacation:(NSString *)vacationName
+           inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    Photo *photo = nil;
+    
+    // Build fetch request.
+    NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.predicate                = [NSPredicate predicateWithFormat:@"unique = %@", [flickrInfo objectForKey:FLICKR_PHOTO_ID]];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+    request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
+    
+    // Execute fetch request.
+    NSError *error   = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || ([matches count] > 1)) {
+        NSLog(@"Photo database error");
+    } else if ([matches count] == 1) {
+        
+        // Delete the Photo.
+        photo = [matches lastObject];
+        [context deleteObject:photo];
+    } else {
+        NSLog(@"Error: photo not on file.");
+    }
+}
+
 @end

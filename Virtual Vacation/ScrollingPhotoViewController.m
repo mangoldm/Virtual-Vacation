@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) NSData *photoData;
-@property (weak, nonatomic) UIManagedDocument *vacationDocument;
 @end
 
 @implementation ScrollingPhotoViewController
@@ -28,21 +27,20 @@
 @synthesize chosenPhoto = _chosenPhoto;
 @synthesize spinner     = _spinner;
 @synthesize photoData   = _photoData;
-@synthesize vacationDocument = _vacationDocument;
 
 #define RECENT_PHOTOS_KEY @"ScrollingPhotoViewController.Recent"
 
 - (void)addPhotoToVacation:(NSString *)vacationName inDocument:(UIManagedDocument *)vacationDocument
 {
     NSManagedObjectContext *context = vacationDocument.managedObjectContext;
-    [Photo photoWithFlickrInfo:self.chosenPhoto onVacation:vacationName inManagedObjectContext:context];
+    [Photo addPhotoWithFlickrInfo:self.chosenPhoto toVacation:vacationName inManagedObjectContext:context];
     [vacationDocument saveToURL:vacationDocument.presentedItemURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success)
      {
          NSString *errorMessage;
          if (!success) {
-             errorMessage = @"Unsuccessful";
+             errorMessage = @"Unsuccessfully";
          } else {
-             errorMessage = @"Successful";
+             errorMessage = @"Successfully";
          }
          UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Photo Saved"
                                                            message:errorMessage
@@ -53,9 +51,25 @@
      }];
 }
 
-- (void)removePhoto:(Photo *) fromVacation:(UIManagedDocument *)vacationDocument
+- (void)removePhotoFromVacation:(NSString *)vacationName inDocument:(UIManagedDocument *)vacationDocument
 {
-    NSLog(@"...Removing Photo");
+    NSManagedObjectContext *context = vacationDocument.managedObjectContext;
+    [Photo deletePhotoWithFlickrInfo:self.chosenPhoto fromVacation:vacationName inManagedObjectContext:context];
+    [vacationDocument saveToURL:vacationDocument.presentedItemURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success)
+     {
+         NSString *errorMessage;
+         if (!success) {
+             errorMessage = @"Unsuccessfully";
+         } else {
+             errorMessage = @"Successfully";
+         }
+         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Photo Deleted"
+                                                           message:errorMessage
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+         [message show];
+     }];
 }
 
 // Clicked when user wants to add or remove the photo from a virtual vacation.
@@ -63,16 +77,13 @@
 {
     NSString *vacationName = @"My Vacation"; // Assume only one vacation.
     if ([sender.title isEqualToString:TITLE_ADD_TO_VACATION]) {
-        if (!self.vacationDocument) {
-            [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
-                self.vacationDocument = vacationDocument;
-                [self addPhotoToVacation:vacationName inDocument:vacationDocument];
-            }];
-        } else {
-            [self addPhotoToVacation:vacationName inDocument:self.vacationDocument];
-        }
+        [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
+            [self addPhotoToVacation:vacationName inDocument:vacationDocument];
+        }];
     } else {
-        NSLog(@"...Removing");
+        [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument){
+            [self removePhotoFromVacation:vacationName inDocument:vacationDocument];
+        }];
     }
 }
 
@@ -230,6 +241,7 @@
     
     dispatch_queue_t photoQueue = dispatch_queue_create("photo downloader", NULL);
     dispatch_async(photoQueue, ^{
+        
         // Retrieve photo from cache when possible
         NSFileManager *fm       = [[NSFileManager alloc] init];
         NSURL *cachePath        = [[fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
@@ -257,6 +269,7 @@
         [self cachePhoto:dataForPhoto withID:photoID];
         
         dispatch_async(dispatch_get_main_queue(),^{
+            
             // Push image to the view.
             [self.imageView setImage: image];
             self.imageView.frame = CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height);
