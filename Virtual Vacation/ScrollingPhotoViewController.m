@@ -41,6 +41,7 @@
              errorMessage = @"Unsuccessfully";
          } else {
              errorMessage = @"Successfully";
+             self.navigationItem.rightBarButtonItem.title = TITLE_REMOVE_FROM_VACATION;
          }
          UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Photo Saved"
                                                            message:errorMessage
@@ -62,6 +63,7 @@
              errorMessage = @"Unsuccessfully";
          } else {
              errorMessage = @"Successfully";
+             self.navigationItem.rightBarButtonItem.title = TITLE_ADD_TO_VACATION;
          }
          UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Photo Deleted"
                                                            message:errorMessage
