@@ -21,6 +21,22 @@
 @synthesize vacationDatabase = _vacationDatabase;
 @synthesize vacationURLs     = _vacationURLs;
 
+- (void)useDocument
+{
+    if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
+        // already open and ready to use
+        [self setupFetchedResultsController];
+    }
+}
+
+- (void)setVacationDatabase:(UIManagedDocument *)vacationDatabase
+{
+    if (_vacationDatabase != vacationDatabase) {
+        _vacationDatabase  = vacationDatabase;
+        [self useDocument];
+    }
+}
+
 // Determines what data populates the Vacations Table
 - (void)setupFetchedResultsController
 {
