@@ -65,23 +65,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.tableView.delegate = self;
     self.vacationURLs = [[NSArray alloc] initWithArray:[self vacationsOnFile]];
+    for (NSURL *url in self.vacationURLs) {
+        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+//    [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSURL *vacationURL = [self.vacationURLs objectAtIndex:indexPath.row];
+    NSURL *vacationURL     = [self.vacationURLs objectAtIndex:indexPath.row];
+    NSError *errorForName  = nil;
+    NSString *vacationName = nil;
+    [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
+    
     static NSString *CellIdentifier = @"Vacation Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        Vacation *vacation = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        cell.textLabel.text = vacation.name;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [vacation.photos count]];
+        NSArray *photos = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text       = vacationName;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [photos count]];
     
     return cell;
 }
