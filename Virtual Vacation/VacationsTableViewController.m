@@ -21,26 +21,23 @@
 @synthesize vacationDatabase = _vacationDatabase;
 @synthesize vacationURLs     = _vacationURLs;
 
-- (void)useDocument
-{
-    if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
-        // already open and ready to use
-        [self setupFetchedResultsController];
-    }
-}
-
 - (void)setVacationDatabase:(UIManagedDocument *)vacationDatabase
 {
     if (_vacationDatabase != vacationDatabase) {
         _vacationDatabase  = vacationDatabase;
-        [self useDocument];
+        if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
+            [self setupFetchedResultsController];
+        } else {
+            NSLog(@"Error reading vacation database.");
+        }
     }
 }
 
 // Determines what data populates the Vacations Table
 - (void)setupFetchedResultsController
 {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Vacation"];
+    // No 'Vacations' entity, but we do want to tally the number of places in each virtual vacation.
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
     
     // No predicate specified because we want all vacations.
     request.sortDescriptors = [NSArray arrayWithObject: [NSSortDescriptor sortDescriptorWithKey:@"name"
@@ -53,9 +50,10 @@
 }
 
 // Returns an array of all the Vacations on file.
-- (NSArray *)vacationsOnFile
+- (void)findVacationsOnFile
 {
-    NSArray *localURLs = [[NSArray alloc] init];
+    self.vacationURLs = [[NSArray alloc] init];
+    
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSError *errorForURLs      = nil;
@@ -70,29 +68,21 @@
         
         // Retrieve the vacation stores on file.
         NSArray *keys = [NSArray arrayWithObjects:NSURLLocalizedNameKey, nil];
-        localURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
-                                                     includingPropertiesForKeys:keys
-                                                                        options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                          error:nil];
+        self.vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
+                                                  includingPropertiesForKeys:keys
+                                                                     options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                       error:nil];
     }
-    return localURLs;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-//    self.tableView.delegate = self;
-    self.vacationURLs = [[NSArray alloc] initWithArray:[self vacationsOnFile]];
-    for (NSURL *url in self.vacationURLs) {
-        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
-    }
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-//    [self.tableView reloadData];
+    
+    [self findVacationsOnFile];
+    for (NSURL *url in self.vacationURLs) {
+        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,10 +94,16 @@
     
     static NSString *CellIdentifier = @"Vacation Cell";
     UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        NSArray *photos = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        cell.textLabel.text       = vacationName;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [photos count]];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell.
+    [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSError *error;
+    NSUInteger placesCount = [self.vacationDatabase.managedObjectContext countForFetchRequest:self.fetchedResultsController.fetchRequest error:&error];
+    cell.textLabel.text       = vacationName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d places", placesCount];
     
     return cell;
 }
