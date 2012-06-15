@@ -19,6 +19,8 @@
 
 @synthesize vacationsOnFile = _vacationsOnFile;
 
+#pragma mark - Setters and Getters
+
 - (void)setVacationsOnFile:(NSArray *)vacationsOnFile
 {
     if (_vacationsOnFile != vacationsOnFile) {
@@ -27,7 +29,9 @@
     }
 }
 
-// Returns an array of all the Vacations on file.
+#pragma mark - Unique Methods
+
+// Fills an array property with the URLs of all Vacations on file.
 - (void)findVacationsOnFile
 {
     self.vacationsOnFile = [[NSArray alloc] init];
@@ -61,12 +65,6 @@
     return [self.vacationsOnFile count];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [self findVacationsOnFile];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Vacation Cell";
@@ -98,6 +96,14 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d places", placesCount];
     }];
     return cell;
+}
+
+#pragma mark - View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self findVacationsOnFile];
 }
 
 @end
