@@ -13,46 +13,24 @@
 #import "Place.h"
 
 @interface VacationsTableViewController ()
-@property (weak, nonatomic) NSArray *vacationURLs;
 @end
 
 @implementation VacationsTableViewController
 
-@synthesize vacationDatabase = _vacationDatabase;
-@synthesize vacationURLs     = _vacationURLs;
+@synthesize vacationsOnFile = _vacationsOnFile;
 
-- (void)setVacationDatabase:(UIManagedDocument *)vacationDatabase
+- (void)setVacationsOnFile:(NSArray *)vacationsOnFile
 {
-    if (_vacationDatabase != vacationDatabase) {
-        _vacationDatabase  = vacationDatabase;
-        if (self.vacationDatabase.documentState == UIDocumentStateNormal) {
-            [self setupFetchedResultsController];
-        } else {
-            NSLog(@"Error reading vacation database.");
-        }
+    if (_vacationsOnFile != vacationsOnFile) {
+        _vacationsOnFile = vacationsOnFile;
+        [self.tableView reloadData];
     }
-}
-
-// Determines what data populates the Vacations Table
-- (void)setupFetchedResultsController
-{
-    // No 'Vacations' entity, but we do want to tally the number of places in each virtual vacation.
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
-    
-    // No predicate specified because we want all vacations.
-    request.sortDescriptors = [NSArray arrayWithObject: [NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                                      ascending:YES
-                                                                                       selector:@selector(localizedCaseInsensitiveCompare:)]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:self.vacationDatabase.managedObjectContext
-                                                                          sectionNameKeyPath:@"Section" cacheName:nil];
 }
 
 // Returns an array of all the Vacations on file.
 - (void)findVacationsOnFile
 {
-    self.vacationURLs = [[NSArray alloc] init];
+    self.vacationsOnFile = [[NSArray alloc] init];
     
     // Identify the documents folder URL.
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -68,30 +46,29 @@
         
         // Retrieve the vacation stores on file.
         NSArray *keys = [NSArray arrayWithObjects:NSURLLocalizedNameKey, nil];
-        self.vacationURLs = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
-                                                  includingPropertiesForKeys:keys
-                                                                     options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                                       error:nil];
+        self.vacationsOnFile = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:documentsURL
+                                                             includingPropertiesForKeys:keys
+                                                                                options:NSDirectoryEnumerationSkipsHiddenFiles
+                                                                                  error:nil];
     }
+}
+
+#pragma mark - TableView Data Source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.vacationsOnFile count];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
     [self findVacationsOnFile];
-    for (NSURL *url in self.vacationURLs) {
-        self.vacationDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
-    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSURL *vacationURL     = [self.vacationURLs objectAtIndex:indexPath.row];
-    NSError *errorForName  = nil;
-    NSString *vacationName = nil;
-    [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
-    
     static NSString *CellIdentifier = @"Vacation Cell";
     UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -99,12 +76,27 @@
     }
     
     // Configure the cell.
-    [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSError *error;
-    NSUInteger placesCount = [self.vacationDatabase.managedObjectContext countForFetchRequest:self.fetchedResultsController.fetchRequest error:&error];
-    cell.textLabel.text       = vacationName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d places", placesCount];
+    NSURL *vacationURL     = [self.vacationsOnFile objectAtIndex:indexPath.row];
+    NSError *errorForName  = nil;
+    NSString *vacationName = nil;
     
+    // Open the Virtual Vacation document.
+    [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
+    [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
+        NSError *error              = nil;
+        NSManagedObjectContext *moc = vacationDocument.managedObjectContext;
+        
+        // Build fetch request.
+        NSFetchRequest *request          = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+        request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
+        
+        // Execute fetch request.
+        NSArray           *places = [moc executeFetchRequest:request error:&error];
+        int         placesCount   = [places count];
+        cell.textLabel.text       = vacationName;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d places", placesCount];
+    }];
     return cell;
 }
 

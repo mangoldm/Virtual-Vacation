@@ -12,7 +12,7 @@
 #import "CoreDataTableViewController.h"
 #import "ScrollingPhotoViewController.h"
 
-@interface VacationsTableViewController : CoreDataTableViewController
+@interface VacationsTableViewController : UITableViewController
 
-@property (nonatomic, strong) UIManagedDocument *vacationDatabase;
+@property (nonatomic, strong) NSArray *vacationsOnFile; // Array of URLs for all Virtual Vacations.
 @end

@@ -13,6 +13,7 @@
 
 @implementation VacationHelper
 
+// Open or create a UIManagedDocument for a virtual vacation.
 + (void)openVacationWithName:(NSString *)vacationName usingBlock:(completion_block_t)completionBlock;
 {
     // Get documents directory and path.
