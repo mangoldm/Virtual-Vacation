@@ -13,6 +13,4 @@
 #import "ScrollingPhotoViewController.h"
 
 @interface VacationsTableViewController : UITableViewController
-
-@property (nonatomic, strong) NSArray *vacationsOnFile; // Array of URLs for all Virtual Vacations.
 @end

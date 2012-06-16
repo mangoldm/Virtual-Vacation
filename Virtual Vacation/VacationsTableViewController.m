@@ -11,13 +11,17 @@
 #import "FlickrFetcher.h"
 #import "Tag.h"
 #import "Place.h"
+#import "ChoicesTableViewController.h"
 
 @interface VacationsTableViewController ()
+@property (nonatomic, strong) NSArray *vacationsOnFile; // Array of URLs for all Virtual Vacations.
+@property(nonatomic) UIManagedDocument *chosenVacation;
 @end
 
 @implementation VacationsTableViewController
 
 @synthesize vacationsOnFile = _vacationsOnFile;
+@synthesize chosenVacation  = _chosenVacation;
 
 #pragma mark - Setters and Getters
 
@@ -98,11 +102,38 @@
     return cell;
 }
 
+#pragma mark - TableView delegate
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Show Vacation"]) {
+        ChoicesTableViewController *choicesTVC = segue.destinationViewController;
+        choicesTVC.vacationDocument = self.chosenVacation;
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSURL *chosenVacationURL = [self.vacationsOnFile objectAtIndex:indexPath.row];
+    
+    NSError *errorForName  = nil;
+    NSString *vacationName = nil;
+    
+    // Open the Virtual Vacation document.
+    [chosenVacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
+    [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
+        self.chosenVacation = vacationDocument; // This might be a no-no.
+    }];
+    
+    [self performSegueWithIdentifier:@"Show Vacation" sender:self];
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     [self findVacationsOnFile];
 }
 

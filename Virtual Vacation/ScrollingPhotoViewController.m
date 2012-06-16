@@ -386,7 +386,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     
     self.scrollView.frame = self.view.frame;
     self.imageView.frame  = self.view.frame;
