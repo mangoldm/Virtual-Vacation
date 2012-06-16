@@ -233,7 +233,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    BOOL updateRecentPlaces;
+    BOOL updateRecentPlaces = NO;
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.tintColor = DEFAULT_COLOR;
     

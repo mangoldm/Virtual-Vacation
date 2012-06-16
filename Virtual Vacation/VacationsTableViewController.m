@@ -112,21 +112,27 @@
     }
 }
 
+- (void)goOnVacation:(NSURL *)chosenVacationURL andDo:(void(^)(UIManagedDocument *chosenVacationDocument))completionBlock
+{
+    __block UIManagedDocument *document = nil;
+    NSError *errorForName               = nil;
+    NSString *vacationName              = nil;
+    
+    // Open the Virtual Vacation document.
+    [chosenVacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
+    [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *chosenVacationDocument) {
+        document = chosenVacationDocument;
+        completionBlock(document);
+    }];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSURL *chosenVacationURL = [self.vacationsOnFile objectAtIndex:indexPath.row];
-    
-    NSError *errorForName  = nil;
-    NSString *vacationName = nil;
-    
-    // Open the Virtual Vacation document.
-    [chosenVacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
-    [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *vacationDocument) {
-        self.chosenVacation = vacationDocument; // This might be a no-no.
+    [self goOnVacation:chosenVacationURL andDo:^(UIManagedDocument *chosenVacationDocument) {
+        self.chosenVacation = chosenVacationDocument;
+        [self performSegueWithIdentifier:@"Show Vacation" sender:self];
     }];
-    
-    [self performSegueWithIdentifier:@"Show Vacation" sender:self];
 }
 
 #pragma mark - View Lifecycle
