@@ -166,7 +166,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulc-Mt-ODB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="DgN-Kd-Qnk" customClass="VacationsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uWl-HD-dUL">
+                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uWl-HD-dUL">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95119942179999994" green="0.95471938779999999" blue="0.73132307630000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -216,7 +216,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSg-nt-YiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="qAj-dk-gvp" customClass="ChoicesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Sd2-tW-mFY">
+                    <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Sd2-tW-mFY">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95119942179999994" green="0.95471938779999999" blue="0.73132307630000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -293,11 +293,11 @@
             </objects>
             <point key="canvasLocation" x="940" y="-1122"/>
         </scene>
-        <!--Places Table View Controller - Itinerary-->
+        <!--Itinerary Table View Controller - Itinerary-->
         <scene sceneID="jva-3r-5pZ">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJg-mY-jhj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="8Qh-07-5Cg" customClass="PlacesTableViewController" sceneMemberID="viewController">
+                <tableViewController id="8Qh-07-5Cg" customClass="ItineraryTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="27W-cr-2y6">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -607,6 +607,9 @@
         </class>
         <class className="CoreDataTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="ItineraryTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItineraryTableViewController.h"/>
         </class>
         <class className="MapViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>

@@ -9,7 +9,7 @@
 #import "ChoicesTableViewController.h"
 #import "CoreDataTableViewController.h"
 #import "ItineraryTableViewController.h"
-#import "tagstab.h"
+#import "TagsTableViewController.h"
 
 @interface ChoicesTableViewController ()
 
@@ -82,8 +82,20 @@
     if ([segue.identifier isEqualToString:@"Show Itinerary"]) {
         ItineraryTableViewController *itineraryTableViewController = segue.destinationViewController;
         itineraryTableViewController.vacationDocument = self.vacationDocument;
-    } else if ([segue.identifier isEqualToString:@"Show Tags") {
-        
+    } else if ([segue.identifier isEqualToString:@"Show Tags"]) {
+        TagsTableViewController *tagsTableViewController = segue.destinationViewController;
+        tagsTableViewController.vacationDocument = self.vacationDocument;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"Show Itinerary" sender:self];
+    } else {
+        if (indexPath.row == 1) {
+            [self performSegueWithIdentifier:@"Show Tags" sender:self];
+        }
     }
 }
 
@@ -92,13 +104,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Set title to the vacation's name.
     NSURL *vacationURL     = self.vacationDocument.fileURL;
     NSError *errorForName  = nil;
     NSString *vacationName = nil;
     [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
     self.title = vacationName;
+    self.tableView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
