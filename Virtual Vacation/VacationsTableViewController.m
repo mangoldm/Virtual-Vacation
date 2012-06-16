@@ -114,15 +114,13 @@
 
 - (void)goOnVacation:(NSURL *)chosenVacationURL andDo:(void(^)(UIManagedDocument *chosenVacationDocument))completionBlock
 {
-    __block UIManagedDocument *document = nil;
-    NSError *errorForName               = nil;
-    NSString *vacationName              = nil;
+    NSError *errorForName  = nil;
+    NSString *vacationName = nil;
     
     // Open the Virtual Vacation document.
     [chosenVacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
     [VacationHelper openVacationWithName:vacationName usingBlock:^(UIManagedDocument *chosenVacationDocument) {
-        document = chosenVacationDocument;
-        completionBlock(document);
+        completionBlock(chosenVacationDocument);
     }];
 }
 
