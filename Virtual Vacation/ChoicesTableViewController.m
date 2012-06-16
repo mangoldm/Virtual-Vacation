@@ -8,7 +8,8 @@
 
 #import "ChoicesTableViewController.h"
 #import "CoreDataTableViewController.h"
-#import "ItineraryViewController.h"
+#import "ItineraryTableViewController.h"
+#import "tagstab.h"
 
 @interface ChoicesTableViewController ()
 
@@ -79,10 +80,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Show Itinerary"]) {
-        ItineraryViewController *itineraryViewController = segue.destinationViewController;
-        itineraryViewController.vacationDocument = self.vacationDocument;
+        ItineraryTableViewController *itineraryTableViewController = segue.destinationViewController;
+        itineraryTableViewController.vacationDocument = self.vacationDocument;
     } else if ([segue.identifier isEqualToString:@"Show Tags") {
-        <#statements#>
+        
     }
 }
 

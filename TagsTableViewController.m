@@ -13,6 +13,7 @@
 @end
 
 @implementation TagsTableViewController
+@synthesize vacationDocument = _vacationDocument;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

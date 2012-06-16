@@ -11,5 +11,5 @@
 #import "CoreDataTableViewController.h"
 
 @interface TagsTableViewController : CoreDataTableViewController
-
+@property (nonatomic) UIManagedDocument *vacationDocument;
 @end

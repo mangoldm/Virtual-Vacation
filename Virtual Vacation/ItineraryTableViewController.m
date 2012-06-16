@@ -13,6 +13,7 @@
 @end
 
 @implementation ItineraryTableViewController
+@synthesize vacationDocument = _vacationDocument;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

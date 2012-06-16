@@ -11,5 +11,5 @@
 #import "CoreDataTableViewController.h"
 
 @interface ItineraryTableViewController : CoreDataTableViewController
-
+@property (nonatomic) UIManagedDocument *vacationDocument;
 @end
