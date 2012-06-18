@@ -16,6 +16,7 @@
 @end
 
 @implementation VacationPhotosTableViewController
+@synthesize delegate         = _delegate;
 @synthesize vacationDocument = _vacationDocument;
 @synthesize place            = _place;
 @synthesize chosenPhoto      = _chosenPhoto;
@@ -41,18 +42,16 @@
 
 #pragma mark - TableView delegate.
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"Show Image for Itinerary"]) {
-        ScrollingPhotoViewController *scrollingPhotoTableViewController = segue.destinationViewController;
-        scrollingPhotoTableViewController.chosenPhoto = (NSDictionary *)self.chosenPhoto;
-    }
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.chosenPhoto = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"Show Image for Itinerary" sender:self];
+    // Retrieve the chosen photo.
+    Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    // ScrollingPhotoViewController is expecting an NSDictionary Flickr photo, not a Core Data photo.
+    NSArray *keys                 = [NSArray arrayWithObjects:FLICKR_PHOTO_ID, FLICKR_PHOTO_TITLE, nil];
+    NSArray *objects              = [NSArray arrayWithObjects:photo.unique, photo.title, nil];
+    NSDictionary *photoDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    [self.delegate viewController:self chosePhoto:photoDictionary];
 }
 
 #pragma mark CoreDataBableViewController
