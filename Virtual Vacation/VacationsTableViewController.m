@@ -71,16 +71,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSURL *vacationURL     = [self.vacationsOnFile objectAtIndex:indexPath.row];
+    NSError *errorForName  = nil;
+    NSString *vacationName = nil;
+    
+    // Configure the cell.
     static NSString *CellIdentifier = @"Vacation Cell";
     UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
-    // Configure the cell.
-    NSURL *vacationURL     = [self.vacationsOnFile objectAtIndex:indexPath.row];
-    NSError *errorForName  = nil;
-    NSString *vacationName = nil;
     
     // Open the Virtual Vacation document.
     [vacationURL getResourceValue:&vacationName forKey:NSURLNameKey error:&errorForName];
@@ -94,8 +94,8 @@
         request.sortDescriptors          = [NSArray arrayWithObject:sortDescriptor];
         
         // Execute fetch request.
-        NSArray           *places = [moc executeFetchRequest:request error:&error];
-        int         placesCount   = [places count];
+        NSArray *places           = [moc executeFetchRequest:request error:&error];
+        int placesCount           = [places count];
         cell.textLabel.text       = vacationName;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d places", placesCount];
     }];

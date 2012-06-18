@@ -8,6 +8,7 @@
 //  Displays a list of places for a Virtual Vacation
 //
 
+#import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 
 @interface ItineraryTableViewController : CoreDataTableViewController

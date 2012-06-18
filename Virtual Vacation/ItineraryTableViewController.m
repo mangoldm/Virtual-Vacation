@@ -7,6 +7,7 @@
 //
 
 #import "ItineraryTableViewController.h"
+#import "Place.h"
 
 @interface ItineraryTableViewController ()
 
@@ -15,25 +16,49 @@
 @implementation ItineraryTableViewController
 @synthesize vacationDocument = _vacationDocument;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - TableView Data Source
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    // Configure cell.
+    static NSString *CellIdentifier = @"Itinerary Place Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    return self;
+    
+    // Execute fetch request and populate cell.
+    Place *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = place.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [place.seenIn count]];
+    
+    return cell;
 }
+
+#pragma mark CoreDataBableViewController
+
+- (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"addedDate" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    // No predicate because we want all places.
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.vacationDocument.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+#pragma ViewController lifecycle.
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
-- (void)viewDidUnload
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    [super viewWillAppear:animated];
+    [self setupFetchedResultsController];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
