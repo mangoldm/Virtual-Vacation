@@ -61,7 +61,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    // No predicate because we want all places.
+    request.predicate = [NSPredicate predicateWithFormat:@"whereTaken == %@", self.place];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.vacationDocument.managedObjectContext
                                                                           sectionNameKeyPath:nil

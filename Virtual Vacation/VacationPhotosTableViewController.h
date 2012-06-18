@@ -9,9 +9,10 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "PhotosTableViewController.h"
 #import "Place.h"
 
-@interface VacationPhotosTableViewController : CoreDataTableViewController
+@interface VacationPhotosTableViewController : CoreDataTableViewController <PhotosTableViewControllerDelegate>
 @property (nonatomic) UIManagedDocument *vacationDocument;
 @property (nonatomic) Place *place;
 @end
