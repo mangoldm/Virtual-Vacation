@@ -12,14 +12,13 @@
 #import "FlickrFetcher.h"
 
 @interface VacationPhotosTableViewController ()
-@property (nonatomic) Photo *chosenPhoto;
 @end
 
 @implementation VacationPhotosTableViewController
 @synthesize delegate         = _delegate;
 @synthesize vacationDocument = _vacationDocument;
 @synthesize place            = _place;
-@synthesize chosenPhoto      = _chosenPhoto;
+@synthesize tag              = _tag;
 
 #pragma mark - TableView Data Source
 
@@ -60,7 +59,12 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    request.predicate = [NSPredicate predicateWithFormat:@"whereTaken == %@", self.place];
+    if (self.place) {
+        request.predicate = [NSPredicate predicateWithFormat:@"whereTaken == %@", self.place];
+    } else if (self.tag) {
+        request.predicate = [NSPredicate predicateWithFormat:@"taggedAs CONTAINS %@", self.tag];
+    }
+    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.vacationDocument.managedObjectContext
                                                                           sectionNameKeyPath:nil

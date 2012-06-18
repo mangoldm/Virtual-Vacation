@@ -11,9 +11,11 @@
 #import "CoreDataTableViewController.h"
 #import "PhotosTableViewController.h"
 #import "Place.h"
+#import "Tag.h"
 
 @interface VacationPhotosTableViewController : CoreDataTableViewController <PhotosTableViewControllerDelegate>
 @property (nonatomic, weak) id <PhotosTableViewControllerDelegate> delegate;
 @property (nonatomic) UIManagedDocument *vacationDocument;
 @property (nonatomic) Place *place;
+@property (nonatomic) Tag *tag;
 @end
