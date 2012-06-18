@@ -146,9 +146,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Tag" id="z6A-0d-4aY"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -157,6 +154,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Tags" id="h4k-iY-tP8"/>
+                    <connections>
+                        <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Tag" id="y60-9i-PQn"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1493" y="-815"/>
@@ -325,9 +325,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Itinerary Place" id="uH3-wu-Uim"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -336,27 +333,45 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Itinerary" id="pXG-M0-MWe"/>
+                    <connections>
+                        <segue destination="AxP-kD-XMs" kind="push" identifier="Show Photos for Itinerary Place" id="h3d-gj-u2U"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1493" y="-1436"/>
         </scene>
-        <!--Photos Table View Controller - Photos-->
+        <!--Vacation Photos Table View Controller - Vacation Photos-->
         <scene sceneID="QmX-RD-Lo7">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u1g-2s-18e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="AxP-kD-XMs" customClass="PhotosTableViewController" sceneMemberID="viewController">
+                <tableViewController id="AxP-kD-XMs" customClass="VacationPhotosTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JYI-x4-6I3">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95119942179999994" green="0.95471938779999999" blue="0.73132307630000004" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.51372549020000002" green="0.1843137255" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Itinerary Photo Cell" id="0qw-d3-M8j">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Vacation Photo Cell" textLabel="nfe-tq-EMF" detailTextLabel="Xkf-eG-925" style="IBUITableViewCellStyleSubtitle" id="0qw-d3-M8j">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nfe-tq-EMF">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" red="0.51372549020000002" green="0.1843137255" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xkf-eG-925">
+                                            <rect key="frame" x="10" y="24" width="47" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
@@ -369,7 +384,7 @@
                             <outlet property="delegate" destination="AxP-kD-XMs" id="Q69-xi-ILU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Photos" id="uBu-dT-ZiP"/>
+                    <navigationItem key="navigationItem" title="Vacation Photos" id="uBu-dT-ZiP"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2036" y="-1110"/>
@@ -656,6 +671,9 @@
         <class className="TagsTableViewController" superclassName="CoreDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TagsTableViewController.h"/>
         </class>
+        <class className="VacationPhotosTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/VacationPhotosTableViewController.h"/>
+        </class>
         <class className="VacationsTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VacationsTableViewController.h"/>
         </class>
@@ -668,7 +686,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="0zi-Eq-bjv"/>
         <segue reference="Ok3-mC-APH"/>
-        <segue reference="M7b-Yc-y3d"/>
-        <segue reference="uH3-wu-Uim"/>
+        <segue reference="y60-9i-PQn"/>
+        <segue reference="TrG-Vp-5Sg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,38 +1,40 @@
 //
-//  ItineraryTableViewController.m
+//  VacationPhotosTableViewController.m
 //  Virtual Vacation
 //
-//  Created by Michael Mangold on 6/16/12.
+//  Created by Michael Mangold on 6/17/12.
 //  Copyright (c) 2012 Michael Mangold. All rights reserved.
 //
 
-#import "ItineraryTableViewController.h"
-#import "Place.h"
 #import "VacationPhotosTableViewController.h"
+#import "Photo.h"
+#import "ScrollingPhotoViewController.h"
+#import "FlickrFetcher.h"
 
-@interface ItineraryTableViewController ()
-@property Place *chosenPlace;
+@interface VacationPhotosTableViewController ()
+@property (nonatomic) Photo *chosenPhoto;
 @end
 
-@implementation ItineraryTableViewController
+@implementation VacationPhotosTableViewController
 @synthesize vacationDocument = _vacationDocument;
-@synthesize chosenPlace      = _chosenPlace;
+@synthesize place            = _place;
+@synthesize chosenPhoto      = _chosenPhoto;
 
 #pragma mark - TableView Data Source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Configure cell.
-    static NSString *CellIdentifier = @"Itinerary Place Cell";
+    static NSString *CellIdentifier = @"Vacation Photo Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Execute fetch request and populate cell.
-    Place *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = place.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photos", [place.seenIn count]];
+    Photo *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text       = photo.title;
+    cell.detailTextLabel.text = photo.subtitle;
     
     return cell;
 }
@@ -41,26 +43,24 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Show Photos for Itinerary Place"]) {
-        VacationPhotosTableViewController *vacationPhotosTableViewController = segue.destinationViewController;
-        vacationPhotosTableViewController.vacationDocument = self.vacationDocument;
-        vacationPhotosTableViewController.place            = self.chosenPlace;
-        vacationPhotosTableViewController.title            = self.chosenPlace.name;
+    if ([segue.identifier isEqualToString:@"Show Image for Itinerary"]) {
+        ScrollingPhotoViewController *scrollingPhotoTableViewController = segue.destinationViewController;
+        scrollingPhotoTableViewController.chosenPhoto = (NSDictionary *)self.chosenPhoto;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.chosenPlace = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"Show Photos for Itinerary Place" sender:self];
+    self.chosenPhoto = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"Show Image for Itinerary" sender:self];
 }
 
 #pragma mark CoreDataBableViewController
 
 - (void)setupFetchedResultsController // attaches an NSFetchRequest to this UITableViewController
 {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"addedDate" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
     // No predicate because we want all places.
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.vacationDocument.managedObjectContext

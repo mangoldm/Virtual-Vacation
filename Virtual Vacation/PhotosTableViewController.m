@@ -64,50 +64,6 @@
 	self.navigationItem.leftBarButtonItem = sender; // Turn off spinning indicator
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Build switch values for segue identifier
-    int segueIndentifier;
-    if ([[segue identifier] isEqualToString:@"Show Image from Table on iPhone"])           segueIndentifier = 0;
-    if ([[segue identifier] isEqualToString:@"Show Image for Photo Annotation on iPhone"]) segueIndentifier = 1;
-    if ([[segue identifier] isEqualToString:@"Show Image from Recently Viewed on iPhone"]) segueIndentifier = 2;
-    if ([[segue identifier] isEqualToString:@"Map Photos for Place Recents on iPhone"])    segueIndentifier = 3;
-    if ([[segue identifier] isEqualToString:@"Map Places from Table on iPhone"])           segueIndentifier = 4;
-    if ([[segue identifier] isEqualToString:@"Map Recent Photos on iPhone"])               segueIndentifier = 5;
-    if ([[segue identifier] isEqualToString:@"Show Image from Table on iPad"])             segueIndentifier = 6;
-    if ([[segue identifier] isEqualToString:@"Show Image from Recently Viewed on iPad"])   segueIndentifier = 7;
-    if ([[segue identifier] isEqualToString:@"Show Image for Photo Annotation on iPad"])   segueIndentifier = 8;
-    
-    switch (segueIndentifier) {
-        case 1: // Show Image for Photo Annotation on iPhone
-        {
-            [segue.destinationViewController viewController:self chosePhoto:self.chosenPhoto];
-        }
-            break;
-            
-        case 3: // Map Photos for Place Recents on iPhone
-        case 4: // Map Places from Table on iPhone
-        case 5: // Map Recent Photos on iPhone
-        {
-            MapViewController *mapVC = segue.destinationViewController;
-            mapVC.annotations = [self mapAnnotations];
-            mapVC.delegate = self;
-            mapVC.title = self.title;
-        }
-            break;
-            
-        case 6: // Show Image from Table on iPad
-        case 7: // Show Image from Recently Viewed on iPad
-        case 8: // Show Image for Photo Annotation on iPad
-        {
-            UINavigationController *nav = segue.destinationViewController;
-            ScrollingPhotoViewController *scrollingPhotoViewController = [nav.viewControllers objectAtIndex:0];
-            [scrollingPhotoViewController viewController:self chosePhoto:self.chosenPhoto];
-        }
-            break;            
-    }
-}
-
 #pragma mark - TableView Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -166,6 +122,50 @@
 }
 
 #pragma mark - TableView Delegate
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Build switch values for segue identifier
+    int segueIndentifier;
+    if ([[segue identifier] isEqualToString:@"Show Image from Table on iPhone"])           segueIndentifier = 0;
+    if ([[segue identifier] isEqualToString:@"Show Image for Photo Annotation on iPhone"]) segueIndentifier = 1;
+    if ([[segue identifier] isEqualToString:@"Show Image from Recently Viewed on iPhone"]) segueIndentifier = 2;
+    if ([[segue identifier] isEqualToString:@"Map Photos for Place Recents on iPhone"])    segueIndentifier = 3;
+    if ([[segue identifier] isEqualToString:@"Map Places from Table on iPhone"])           segueIndentifier = 4;
+    if ([[segue identifier] isEqualToString:@"Map Recent Photos on iPhone"])               segueIndentifier = 5;
+    if ([[segue identifier] isEqualToString:@"Show Image from Table on iPad"])             segueIndentifier = 6;
+    if ([[segue identifier] isEqualToString:@"Show Image from Recently Viewed on iPad"])   segueIndentifier = 7;
+    if ([[segue identifier] isEqualToString:@"Show Image for Photo Annotation on iPad"])   segueIndentifier = 8;
+    
+    switch (segueIndentifier) {
+        case 1: // Show Image for Photo Annotation on iPhone
+        {
+            [segue.destinationViewController viewController:self chosePhoto:self.chosenPhoto];
+        }
+            break;
+            
+        case 3: // Map Photos for Place Recents on iPhone
+        case 4: // Map Places from Table on iPhone
+        case 5: // Map Recent Photos on iPhone
+        {
+            MapViewController *mapVC = segue.destinationViewController;
+            mapVC.annotations = [self mapAnnotations];
+            mapVC.delegate = self;
+            mapVC.title = self.title;
+        }
+            break;
+            
+        case 6: // Show Image from Table on iPad
+        case 7: // Show Image from Recently Viewed on iPad
+        case 8: // Show Image for Photo Annotation on iPad
+        {
+            UINavigationController *nav = segue.destinationViewController;
+            ScrollingPhotoViewController *scrollingPhotoViewController = [nav.viewControllers objectAtIndex:0];
+            [scrollingPhotoViewController viewController:self chosePhoto:self.chosenPhoto];
+        }
+            break;            
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {	
