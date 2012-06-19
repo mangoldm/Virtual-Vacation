@@ -74,8 +74,19 @@
         NSLog(@"Photo database error");
     } else if ([matches count] == 1) {
         
-        // Delete the Photo.
+        // Delete the Photo, updating tags and deleting unused tags.
         photo = [matches lastObject];
+        NSMutableSet *tagsToDelete = [[NSMutableSet alloc] initWithCapacity:[photo.taggedAs count]];
+        for (Tag *tag in photo.taggedAs) {
+            [Tag oneLessPhotoWithTag:tag.name inManagedObjectContext:context];
+            if (tag.totalPhotosTagged <= 0) {
+                [tagsToDelete addObject:tag];
+            }
+        }
+        for (Tag *tag in tagsToDelete) {
+            NSLog(@"Deleting tag:%@",tag);
+            [context deleteObject:tag];
+        }
         [context deleteObject:photo];
     } else {
         NSLog(@"Error: photo not on file.");

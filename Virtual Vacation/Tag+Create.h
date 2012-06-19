@@ -14,5 +14,6 @@
 @interface Tag (Create)
 
 + (NSSet *)tagsFromString:(NSString *)tagsString forPhotoID:(NSString *)unique inManagedObjectContext:(NSManagedObjectContext *)context;
++ (void)oneLessPhotoWithTag:(NSString *)tagName inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
