@@ -65,7 +65,6 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tag"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"totalPhotosTagged" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
 // No predicate -- all tags returned.
-    //    request.predicate = [NSPredicate predicateWithFormat:@"name == %@", self.tag.name];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.vacationDocument.managedObjectContext
                                                                           sectionNameKeyPath:nil

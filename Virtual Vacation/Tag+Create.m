@@ -39,9 +39,10 @@
                 
                 // Create new tag if one doesn't already exist, otherwise retrieve the tag already on-file.
                 if (![fetchedTags count]) {
-                    tag      = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
-                    tag.name = photoTag;
-                } else tag   = [fetchedTags lastObject];
+                    tag                   = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:context];
+                    tag.name              = photoTag;
+                    tag.totalPhotosTagged = [NSNumber numberWithInt:[tag.taggedIn count]];
+                } else tag = [fetchedTags lastObject];
                 
                 // Add the tag to the set.
                 if (tag) [tagSet addObject:tag];
