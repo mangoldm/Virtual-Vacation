@@ -79,7 +79,7 @@
         NSMutableSet *tagsToDelete = [[NSMutableSet alloc] initWithCapacity:[photo.taggedAs count]];
         for (Tag *tag in photo.taggedAs) {
             [Tag oneLessPhotoWithTag:tag.name inManagedObjectContext:context];
-            if (tag.totalPhotosTagged <= 0) {
+            if ([tag.totalPhotosTagged intValue] <= 0) {
                 [tagsToDelete addObject:tag];
             }
         }
