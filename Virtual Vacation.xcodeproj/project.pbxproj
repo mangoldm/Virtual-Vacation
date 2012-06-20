@@ -13,6 +13,7 @@
 		6D2030EF1592824C00E0B831 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2030EE1592824C00E0B831 /* Tag.m */; };
 		6D2030F21592824C00E0B831 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2030F11592824C00E0B831 /* Place.m */; };
 		6D2030F51592824C00E0B831 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2030F41592824C00E0B831 /* Photo.m */; };
+		6D2030F8159282DF00E0B831 /* TagsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2030F7159282DF00E0B831 /* TagsTableViewController.m */; };
 		6D2B0ED9156972E500019A17 /* FlickrPhotoAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928015696D02008DDE82 /* FlickrPhotoAnnotation.m */; };
 		6D2B0EDA156972EA00019A17 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928415696D02008DDE82 /* MapViewController.m */; };
 		6D2B0EDB156972EE00019A17 /* NavigationControllerWithOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928615696D02008DDE82 /* NavigationControllerWithOrientation.m */; };
@@ -20,7 +21,6 @@
 		6D2B0EDD156972F300019A17 /* PhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928A15696D02008DDE82 /* PhotosTableViewController.m */; };
 		6D2B0EDE156972F600019A17 /* PlacesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928C15696D02008DDE82 /* PlacesTableViewController.m */; };
 		6D2B0EDF156972F900019A17 /* ScrollingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */; };
-		6D3D7F69158D40B00070B585 /* TagsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D7F68158D40B00070B585 /* TagsTableViewController.m */; };
 		6D3D7F6C158D40EE0070B585 /* ItineraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D7F6B158D40EE0070B585 /* ItineraryTableViewController.m */; };
 		6D49179F15927EC00012D852 /* VacationDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D49179D15927EC00012D852 /* VacationDataModel.xcdatamodeld */; };
 		6D5D7D3F158BC7BB0077B27D /* ChoicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D7D3E158BC7BB0077B27D /* ChoicesTableViewController.m */; };
@@ -62,8 +62,8 @@
 		6D2030F11592824C00E0B831 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		6D2030F31592824C00E0B831 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		6D2030F41592824C00E0B831 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		6D3D7F67158D40B00070B585 /* TagsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagsTableViewController.h; path = ../TagsTableViewController.h; sourceTree = "<group>"; };
-		6D3D7F68158D40B00070B585 /* TagsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsTableViewController.m; path = ../TagsTableViewController.m; sourceTree = "<group>"; };
+		6D2030F6159282DF00E0B831 /* TagsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagsTableViewController.h; path = ../../../../Desktop/TagsTableViewController.h; sourceTree = "<group>"; };
+		6D2030F7159282DF00E0B831 /* TagsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsTableViewController.m; path = ../../../../Desktop/TagsTableViewController.m; sourceTree = "<group>"; };
 		6D3D7F6A158D40EE0070B585 /* ItineraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItineraryTableViewController.h; sourceTree = "<group>"; };
 		6D3D7F6B158D40EE0070B585 /* ItineraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItineraryTableViewController.m; sourceTree = "<group>"; };
 		6D49179E15927EC00012D852 /* VacationDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 				6DF4928F15696D02008DDE82 /* SplitViewBarButtonItemPresenter.h */,
 				6DDE9BE5156F01F200A65A0F /* Tag+Create.h */,
 				6DDE9BE6156F01F200A65A0F /* Tag+Create.m */,
-				6D3D7F67158D40B00070B585 /* TagsTableViewController.h */,
-				6D3D7F68158D40B00070B585 /* TagsTableViewController.m */,
+				6D2030F6159282DF00E0B831 /* TagsTableViewController.h */,
+				6D2030F7159282DF00E0B831 /* TagsTableViewController.m */,
 				6DDE9BE815712FAF00A65A0F /* VacationHelper.h */,
 				6DDE9BE915712FAF00A65A0F /* VacationHelper.m */,
 				6D1C47E3158EC9D80088054D /* VacationPhotosTableViewController.h */,
@@ -345,13 +345,13 @@
 				6DDE9BE7156F01F200A65A0F /* Tag+Create.m in Sources */,
 				6DDE9BEA15712FAF00A65A0F /* VacationHelper.m in Sources */,
 				6D5D7D3F158BC7BB0077B27D /* ChoicesTableViewController.m in Sources */,
-				6D3D7F69158D40B00070B585 /* TagsTableViewController.m in Sources */,
 				6D3D7F6C158D40EE0070B585 /* ItineraryTableViewController.m in Sources */,
 				6D1C47E5158EC9D80088054D /* VacationPhotosTableViewController.m in Sources */,
 				6D49179F15927EC00012D852 /* VacationDataModel.xcdatamodeld in Sources */,
 				6D2030EF1592824C00E0B831 /* Tag.m in Sources */,
 				6D2030F21592824C00E0B831 /* Place.m in Sources */,
 				6D2030F51592824C00E0B831 /* Photo.m in Sources */,
+				6D2030F8159282DF00E0B831 /* TagsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
