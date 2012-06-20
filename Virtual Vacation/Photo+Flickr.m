@@ -74,7 +74,7 @@
         NSLog(@"Photo database error");
     } else if ([matches count] == 1) {
         
-        // Delete the Photo, updating tags and deleting unused tags.
+        // Delete the Photo, updating Tags and deleting unused Tags and Places.
         photo = [matches lastObject];
         NSMutableSet *tagsToDelete = [[NSMutableSet alloc] initWithCapacity:[photo.taggedAs count]];
         for (Tag *tag in photo.taggedAs) {
@@ -84,8 +84,10 @@
             }
         }
         for (Tag *tag in tagsToDelete) {
-            NSLog(@"Deleting tag:%@",tag);
             [context deleteObject:tag];
+        }
+        if ([photo.whereTaken.seenIn count] <= 1) {
+            [context deleteObject:photo.whereTaken];
         }
         [context deleteObject:photo];
     } else {
