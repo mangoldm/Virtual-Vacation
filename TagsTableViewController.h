@@ -13,6 +13,6 @@
 #import "Tag.h"
 
 @interface TagsTableViewController : CoreDataTableViewController <PhotosTableViewControllerDelegate>
-@property (nonatomic, weak) id <PhotosTableViewControllerDelegate> delegate;
+@property (nonatomic) id <PhotosTableViewControllerDelegate> delegate;
 @property (nonatomic) UIManagedDocument *vacationDocument;
 @end

@@ -13,7 +13,7 @@
 #import "VacationPhotosTableViewController.h"
 
 @interface TagsTableViewController ()
-@property Tag *chosenTag;
+@property (nonatomic) Tag *chosenTag;
 @end
 
 @implementation TagsTableViewController

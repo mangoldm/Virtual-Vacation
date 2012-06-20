@@ -14,7 +14,7 @@
 #import "ChoicesTableViewController.h"
 
 @interface VacationsTableViewController ()
-@property (nonatomic, strong) NSArray *vacationsOnFile; // Array of URLs for all Virtual Vacations.
+@property(nonatomic, strong) NSArray *vacationsOnFile; // Array of URLs for all Virtual Vacations.
 @property(nonatomic) UIManagedDocument *chosenVacation;
 @end
 
