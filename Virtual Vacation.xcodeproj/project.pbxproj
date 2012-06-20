@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755A0156C397300D2247D /* FlickrFetcher.m */; };
 		6D0755AB156C548900D2247D /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755AA156C548900D2247D /* CoreDataTableViewController.m */; };
-		6D0755AE156C6D4600D2247D /* VacationDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */; };
 		6D1C47E5158EC9D80088054D /* VacationPhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C47E4158EC9D80088054D /* VacationPhotosTableViewController.m */; };
 		6D1C4835158FEC7D0088054D /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C4834158FEC7C0088054D /* Tag.m */; };
 		6D1C4838158FEC7D0088054D /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C4837158FEC7D0088054D /* Photo.m */; };
@@ -23,6 +22,7 @@
 		6D2B0EDF156972F900019A17 /* ScrollingPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF4928E15696D02008DDE82 /* ScrollingPhotoViewController.m */; };
 		6D3D7F69158D40B00070B585 /* TagsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D7F68158D40B00070B585 /* TagsTableViewController.m */; };
 		6D3D7F6C158D40EE0070B585 /* ItineraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D7F6B158D40EE0070B585 /* ItineraryTableViewController.m */; };
+		6D49179F15927EC00012D852 /* VacationDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D49179D15927EC00012D852 /* VacationDataModel.xcdatamodeld */; };
 		6D5D7D3F158BC7BB0077B27D /* ChoicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D7D3E158BC7BB0077B27D /* ChoicesTableViewController.m */; };
 		6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD96296156978E1000CDC6F /* VacationsTableViewController.m */; };
 		6DD9629A15697A74000CDC6F /* briefcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD9629915697A74000CDC6F /* briefcase.png */; };
@@ -54,7 +54,6 @@
 		6D0755A0156C397300D2247D /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		6D0755A9156C548900D2247D /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		6D0755AA156C548900D2247D /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6D1C47E3158EC9D80088054D /* VacationPhotosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationPhotosTableViewController.h; sourceTree = "<group>"; };
 		6D1C47E4158EC9D80088054D /* VacationPhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VacationPhotosTableViewController.m; sourceTree = "<group>"; };
 		6D1C4833158FEC7C0088054D /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
@@ -67,6 +66,7 @@
 		6D3D7F68158D40B00070B585 /* TagsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagsTableViewController.m; path = ../TagsTableViewController.m; sourceTree = "<group>"; };
 		6D3D7F6A158D40EE0070B585 /* ItineraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItineraryTableViewController.h; sourceTree = "<group>"; };
 		6D3D7F6B158D40EE0070B585 /* ItineraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItineraryTableViewController.m; sourceTree = "<group>"; };
+		6D49179E15927EC00012D852 /* VacationDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacationDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6D5D7D3D158BC7BB0077B27D /* ChoicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoicesTableViewController.h; sourceTree = "<group>"; };
 		6D5D7D3E158BC7BB0077B27D /* ChoicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoicesTableViewController.m; sourceTree = "<group>"; };
 		6DD96295156978E1000CDC6F /* VacationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VacationsTableViewController.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		6D1C4829158FEBFC0088054D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */,
+				6D49179D15927EC00012D852 /* VacationDataModel.xcdatamodeld */,
 				6D1C4839158FEC7D0088054D /* Place.h */,
 				6D1C483A158FEC7D0088054D /* Place.m */,
 				6D1C4836158FEC7D0088054D /* Photo.h */,
@@ -340,7 +340,6 @@
 				6DD96297156978E1000CDC6F /* VacationsTableViewController.m in Sources */,
 				6D0755A1156C397300D2247D /* FlickrFetcher.m in Sources */,
 				6D0755AB156C548900D2247D /* CoreDataTableViewController.m in Sources */,
-				6D0755AE156C6D4600D2247D /* VacationDataModel.xcdatamodeld in Sources */,
 				6DDE9BDE156D92C600A65A0F /* Photo+Flickr.m in Sources */,
 				6DDE9BE4156EF7C400A65A0F /* Place+Create.m in Sources */,
 				6DDE9BE7156F01F200A65A0F /* Tag+Create.m in Sources */,
@@ -352,6 +351,7 @@
 				6D1C4835158FEC7D0088054D /* Tag.m in Sources */,
 				6D1C4838158FEC7D0088054D /* Photo.m in Sources */,
 				6D1C483B158FEC7D0088054D /* Place.m in Sources */,
+				6D49179F15927EC00012D852 /* VacationDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,12 +462,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6D0755AC156C6D4600D2247D /* VacationDataModel.xcdatamodeld */ = {
+		6D49179D15927EC00012D852 /* VacationDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */,
+				6D49179E15927EC00012D852 /* VacationDataModel.xcdatamodel */,
 			);
-			currentVersion = 6D0755AD156C6D4600D2247D /* VacationDataModel.xcdatamodel */;
+			currentVersion = 6D49179E15927EC00012D852 /* VacationDataModel.xcdatamodel */;
 			path = VacationDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
